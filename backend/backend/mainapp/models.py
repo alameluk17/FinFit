@@ -11,25 +11,28 @@ class Player(models.Model):
     monthly_salary = models.BigIntegerField(default=GAME_CONSTANTS.STARTING_MONTHLY_SALARY,null=False)
     government_id = models.CharField(max_length=12)
     net_worth = models.BigIntegerField(default=0,null=False)
-    kindness_index = models.PositiveSmallIntegerField(max_length=2,null=False,default=GAME_CONSTANTS.STARTING_KINDESS_INDEX)
+    kindness_index = models.PositiveSmallIntegerField(null=False,default=GAME_CONSTANTS.STARTING_KINDESS_INDEX)
 
-class FixedDeposit(models.Model):
-    principal = models.FloatField(null=False)
-    interest = models.FloatField(null=False)
-    term = models.IntegerField(null=False)
-    start_date = models.DateField(null=False,auto_now_add=True)
-    owner = models.ForeignKey(Player)
-    location =  models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS)
+    def __str__(self):
+        return f"{self.user.username} Player"
 
-class Asset(models.Model):
-    owner = models.ForeignKey(Player,null=False)
-    asset_type = models.CharField(max_length=3,choices=GAME_CONSTANTS.ASSET_TYPES,null=False)
-    start_date = models.DateField(auto_now_add=True,null=False)
-    buying_price = models.FloatField(null=False)
-    value = models.FloatField(null=False)
-    location =  models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS)
+# class FixedDeposit(models.Model):
+#     principal = models.FloatField(null=False)
+#     interest = models.FloatField(null=False)
+#     term = models.IntegerField(null=False)
+#     start_date = models.DateField(null=False,auto_now_add=True)
+#     owner = models.ForeignKey(Player,on_delete=models.CASCADE)
+#     location =  models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS)
 
-class CharityTransactions(models.Model):
-    depositor = models.ForeignKey(Player,null=False)
-    amount = models.FloatField(null=False)
-    date = models.DateField(auto_now_add=True,null=False)
+# class Asset(models.Model):
+#     owner = models.ForeignKey(Player,null=False)
+#     asset_type = models.CharField(max_length=3,choices=GAME_CONSTANTS.ASSET_TYPES,null=False)
+#     start_date = models.DateField(auto_now_add=True,null=False)
+#     buying_price = models.FloatField(null=False)
+#     value = models.FloatField(null=False)
+#     location =  models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS)
+
+# class CharityTransactions(models.Model):
+#     depositor = models.ForeignKey(Player,null=False,on_delete=models.CASCADE)
+#     amount = models.FloatField(null=False)
+#     date = models.DateField(auto_now_add=True,null=False)
