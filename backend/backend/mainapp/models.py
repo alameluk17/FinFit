@@ -18,8 +18,8 @@ class Player(models.Model):
     
     @classmethod
     def get_default_entity_pk(cls):
-        admin_player,_ = cls.objects.get(
-            id = 1 # Admin User Account's ID
+        admin_player = cls.objects.get(
+            user = User.objects.get(id=1) # Admin User Account's ID
         )
         return admin_player.pk
 
@@ -28,6 +28,7 @@ class FixedDeposit(models.Model):
     interest = models.FloatField(null=False)
     term = models.IntegerField(null=False)
     start_date = models.DateField(null=False,auto_now_add=True)
+    status = models.CharField(max_length=1,choices=GAME_CONSTANTS.FD_TYPES,default="O")
     owner = models.ForeignKey(Player,on_delete=models.CASCADE)
     location =  models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS)
 

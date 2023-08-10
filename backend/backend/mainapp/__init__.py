@@ -18,3 +18,8 @@ class GAME_CONSTANTS:
         ("IH", "Individual House"),
         ("PL", "Plot"),
     ]
+    FD_TYPES = [
+        ("O","Ongoing"),
+        ("B","Broken"),
+        ("C","Completed")
+    ]
