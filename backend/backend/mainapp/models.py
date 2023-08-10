@@ -15,24 +15,31 @@ class Player(models.Model):
 
     def __str__(self):
         return f"{self.user.username} Player"
+    
+    @classmethod
+    def get_default_entity_pk(cls):
+        admin_player,_ = cls.objects.get(
+            id = 1 # Admin User Account's ID
+        )
+        return admin_player.pk
 
-# class FixedDeposit(models.Model):
-#     principal = models.FloatField(null=False)
-#     interest = models.FloatField(null=False)
-#     term = models.IntegerField(null=False)
-#     start_date = models.DateField(null=False,auto_now_add=True)
-#     owner = models.ForeignKey(Player,on_delete=models.CASCADE)
-#     location =  models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS)
+class FixedDeposit(models.Model):
+    principal = models.FloatField(null=False)
+    interest = models.FloatField(null=False)
+    term = models.IntegerField(null=False)
+    start_date = models.DateField(null=False,auto_now_add=True)
+    owner = models.ForeignKey(Player,on_delete=models.CASCADE)
+    location =  models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS)
 
-# class Asset(models.Model):
-#     owner = models.ForeignKey(Player,null=False)
-#     asset_type = models.CharField(max_length=3,choices=GAME_CONSTANTS.ASSET_TYPES,null=False)
-#     start_date = models.DateField(auto_now_add=True,null=False)
-#     buying_price = models.FloatField(null=False)
-#     value = models.FloatField(null=False)
-#     location =  models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS)
+class Asset(models.Model):
+    owner = models.ForeignKey(Player,null=False,on_delete=models.SET_DEFAULT,default=Player.get_default_entity_pk)
+    asset_type = models.CharField(max_length=3,choices=GAME_CONSTANTS.ASSET_TYPES,null=False)
+    start_date = models.DateField(auto_now_add=True,null=False)
+    buying_price = models.FloatField(null=False)
+    value = models.FloatField(null=False)
+    location =  models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS)
 
-# class CharityTransactions(models.Model):
-#     depositor = models.ForeignKey(Player,null=False,on_delete=models.CASCADE)
-#     amount = models.FloatField(null=False)
-#     date = models.DateField(auto_now_add=True,null=False)
+class CharityTransaction(models.Model):
+    depositor = models.ForeignKey(Player,null=False,on_delete=models.CASCADE)
+    amount = models.FloatField(null=False)
+    date = models.DateField(auto_now_add=True,null=False)
