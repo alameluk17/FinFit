@@ -4,7 +4,9 @@ from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
-from .serializers import UserSerializer, GroupSerializer, PlayerSerializer
+from rest_framework import generics
+from rest_framework.permissions import AllowAny
+from .serializers import UserSerializer, GroupSerializer, PlayerSerializer, RegisterEndpointSerializer
 from .models import Player
 from .permissions import IsAdminOrReadOnly, IsReadOnly, IsPlayerOwnerOrAdmin
 
@@ -43,3 +45,8 @@ class PlayerViewSet(viewsets.ModelViewSet):
     queryset = Player.objects.all()
     serializer_class = PlayerSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+class RegisterUserView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    permission_classes = (AllowAny,)
+    serializer_class = RegisterEndpointSerializer
