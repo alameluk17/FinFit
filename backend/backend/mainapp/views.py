@@ -6,6 +6,7 @@ from rest_framework import viewsets
 from rest_framework import permissions
 from .serializers import UserSerializer, GroupSerializer, PlayerSerializer
 from .models import Player
+from .permissions import IsAdminOrReadOnly, IsReadOnly, IsPlayerOwnerOrAdmin
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -28,6 +29,17 @@ class PlayerViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows players to be viewed or edited.
     """
+    # Apply appropriate permissions for each action
+    def get_permissions(self):
+        if self.action in ['list', 'retrieve']:
+            permission_classes = [IsReadOnly]
+        elif self.action in ['update', 'partial_update']:
+            permission_classes = [IsPlayerOwnerOrAdmin]
+        elif self.action in ['create', 'destroy']:
+            permission_classes = [IsAdminOrReadOnly]
+        else:
+            permission_classes = []
+        return [permission() for permission in permission_classes]
     queryset = Player.objects.all()
     serializer_class = PlayerSerializer
     permission_classes = [permissions.IsAuthenticated]
