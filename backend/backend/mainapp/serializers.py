@@ -21,7 +21,7 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.HyperlinkedRelatedField(view_name='user-detail',queryset=User.objects.all())
     class Meta:
         model = Player
-        fields = ['user','account_location','account_balance','monthly_expenses','monthly_salary','government_id','net_worth','kindness_index']
+        fields = ['user','wallet_balance','account_location','account_balance','monthly_expenses','monthly_salary','government_id','net_worth','kindness_index','happiness_index']
 
 class RegisterEndpointSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(

@@ -7,12 +7,13 @@ class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,primary_key=True)
     account_location = models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS,null=False)
     account_balance = models.FloatField(default=GAME_CONSTANTS.STARTING_ACCOUNT_BALANCE,null=False)
+    wallet_balance = models.IntegerField(default=GAME_CONSTANTS.STARTING_WALLET_BALANCE,null=False)
     monthly_expenses = models.BigIntegerField(default=GAME_CONSTANTS.STARTING_MONTHLY_EXPENSES,null=False)
     monthly_salary = models.BigIntegerField(default=GAME_CONSTANTS.STARTING_MONTHLY_SALARY,null=False)
-    government_id = models.CharField(max_length=12)
-    net_worth = models.BigIntegerField(default=0,null=False)
+    government_id = models.CharField(max_length=GAME_CONSTANTS.GOVERNMENT_ID_LENGTH)
+    net_worth = models.BigIntegerField(default=GAME_CONSTANTS.STARTING_NET_WORTH,null=False)
     kindness_index = models.PositiveSmallIntegerField(null=False,default=GAME_CONSTANTS.STARTING_KINDESS_INDEX)
-
+    happiness_index = models.PositiveSmallIntegerField(null=False,default=GAME_CONSTANTS.STARTING_HAPPINESS_INDEX)
     def __str__(self):
         return f"{self.user.username} Player"
     
@@ -28,7 +29,7 @@ class FixedDeposit(models.Model):
     interest = models.FloatField(null=False)
     term = models.IntegerField(null=False)
     start_date = models.DateField(null=False,auto_now_add=True)
-    status = models.CharField(max_length=1,choices=GAME_CONSTANTS.FD_TYPES,default="O")
+    status = models.CharField(max_length=1,choices=GAME_CONSTANTS.FD_TYPES,default=GAME_CONSTANTS.DEFAULT_FD_TYPE)
     owner = models.ForeignKey(Player,on_delete=models.CASCADE)
     location =  models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS)
 
