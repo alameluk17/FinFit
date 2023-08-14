@@ -34,3 +34,4 @@ class GAME_CONSTANTS:
         ("SH","Shopping")
     ]
     DEFAULT_FD_TYPE = "O"
+    DELETED_USER_USERNAME = "Deleted User"

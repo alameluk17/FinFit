@@ -27,7 +27,7 @@ class Player(models.Model):
     @classmethod
     def get_deleted_entity_pk(cls):
         deleted_player = cls.objects.get(
-            user = User.objects.get(username ="DeletedUser") # Admin User Account's ID
+            user = User.objects.get(username = GAME_CONSTANTS.DELETED_USER_USERNAME) # Deleted user's userid
         )
         return deleted_player.pk
 
