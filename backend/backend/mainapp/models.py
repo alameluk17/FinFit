@@ -41,7 +41,9 @@ class Asset(models.Model):
     value = models.FloatField(null=False)
     location =  models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS)
 
-class CharityTransaction(models.Model):
+class Transaction(models.Model):
     depositor = models.ForeignKey(Player,null=False,on_delete=models.CASCADE)
+    beneficiary = models.ForeignKey(Player,null=False,on_delete=models.CASCADE)
     amount = models.FloatField(null=False)
     date = models.DateField(auto_now_add=True,null=False)
+    purpose = models.CharField(max_length=2,choices=GAME_CONSTANTS.TRANSACTION_PURPOSES,null=False)
