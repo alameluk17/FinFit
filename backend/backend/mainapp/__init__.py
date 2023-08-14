@@ -26,4 +26,11 @@ class GAME_CONSTANTS:
         ("B","Broken"),
         ("C","Completed")
     ]
+    TRANSACTION_PURPOSES = [
+        ("CH" ,"Charity"),
+        ("WW","WithdrawalFromWallet"),
+        ("DW","DepositToWallet"),
+        ("EM","Emergency"),
+        ("SH","Shopping")
+    ]
     DEFAULT_FD_TYPE = "O"
