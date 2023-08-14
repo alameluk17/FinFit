@@ -50,8 +50,8 @@ class Asset(models.Model):
 
 class Transaction(models.Model):
     # Note : Always ensure that you pass depositor and beneficiary when a transaction is made.
-    depositor = models.ForeignKey(Player,null=False,on_delete=models.SET_DEFAULT,default=Player.get_deleted_entity_pk) 
-    beneficiary = models.ForeignKey(Player,null=False,on_delete=models.SET_DEFAULT,default=Player.get_deleted_entity_pk)
+    depositor = models.ForeignKey(Player,null=False,on_delete=models.SET_DEFAULT,default=Player.get_deleted_entity_pk,related_name="depositor") 
+    beneficiary = models.ForeignKey(Player,null=False,on_delete=models.SET_DEFAULT,default=Player.get_deleted_entity_pk,related_name="beneficiary")
     amount = models.FloatField(null=False)
     date = models.DateField(auto_now_add=True,null=False)
     purpose = models.CharField(max_length=2,choices=GAME_CONSTANTS.TRANSACTION_PURPOSES,null=False)
