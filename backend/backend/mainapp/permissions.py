@@ -21,3 +21,12 @@ class IsAdminOrReadOnly(BasePermission):
 
         # Allow write access for admin
         return request.user.is_staff
+    
+class IsPlayerDepositorOrAdmin(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        # Allow read-only access for depositor or beneficiary
+        if request.method in SAFE_METHODS and (obj.depositor == request.user or obj.beneficiary == request.user or request.user.is_staff):
+            return True
+
+        # Allow write access for player owner or admin
+        return obj.depositor == request.user or request.user.is_staff
