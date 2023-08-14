@@ -34,4 +34,13 @@ class GAME_CONSTANTS:
         ("SH","Shopping")
     ]
     DEFAULT_FD_TYPE = "O"
+
     DELETED_USER_USERNAME = "Deleted User"
+    POLICE_USER_USERNAME = "Police Station"
+    HOSPITAL_USER_USERNAME = "Hospital"
+    GOVERNMENTOFFICE_USER_USERNAME = "Government Office"
+    POSTOFFICE_USER_USERNAME = "Post Office"
+    PRIVATEBANK_USER_USERNAME = "Private Bank"
+    PUBLICBANK_USER_USERNAME = "Public Bank"
+    CHARITY_USER_USERNAME = "Charity"
+    SHOP_USER_USERNAME = "Shop"
