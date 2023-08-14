@@ -23,6 +23,13 @@ class Player(models.Model):
             user = User.objects.get(id=1) # Admin User Account's ID
         )
         return admin_player.pk
+    
+    @classmethod
+    def get_deleted_entity_pk(cls):
+        deleted_player = cls.objects.get(
+            user = User.objects.get(username ="DeletedUser") # Admin User Account's ID
+        )
+        return deleted_player.pk
 
 class FixedDeposit(models.Model):
     principal = models.FloatField(null=False)
@@ -42,8 +49,9 @@ class Asset(models.Model):
     location =  models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS)
 
 class Transaction(models.Model):
-    depositor = models.ForeignKey(Player,null=False,on_delete=models.CASCADE)
-    beneficiary = models.ForeignKey(Player,null=False,on_delete=models.CASCADE)
+    # Note : Always ensure that you pass depositor and beneficiary when a transaction is made.
+    depositor = models.ForeignKey(Player,null=False,on_delete=models.SET_DEFAULT,default=Player.get_deleted_entity_pk) 
+    beneficiary = models.ForeignKey(Player,null=False,on_delete=models.SET_DEFAULT,default=Player.get_deleted_entity_pk)
     amount = models.FloatField(null=False)
     date = models.DateField(auto_now_add=True,null=False)
     purpose = models.CharField(max_length=2,choices=GAME_CONSTANTS.TRANSACTION_PURPOSES,null=False)
