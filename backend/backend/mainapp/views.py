@@ -6,9 +6,9 @@ from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
-from .serializers import UserSerializer, GroupSerializer, PlayerSerializer, RegisterEndpointSerializer
-from .models import Player
-from .permissions import IsAdminOrReadOnly, IsReadOnly, IsPlayerOwnerOrAdmin
+from .serializers import TransactionSerializer, UserSerializer, GroupSerializer, PlayerSerializer, RegisterEndpointSerializer
+from .models import Player, Transaction
+from .permissions import IsAdminOrReadOnly, IsPlayerDepositorOrAdmin, IsReadOnly, IsPlayerOwnerOrAdmin
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -50,3 +50,8 @@ class RegisterUserView(generics.CreateAPIView):
     queryset = User.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = RegisterEndpointSerializer
+
+class TransactionView(generics.CreateAPIView):
+    queryset = Transaction.objects.all()
+    permission_classes = (IsPlayerDepositorOrAdmin,)
+    serializer_class = TransactionSerializer
