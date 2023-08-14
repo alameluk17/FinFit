@@ -35,12 +35,12 @@ class GAME_CONSTANTS:
     ]
     DEFAULT_FD_TYPE = "O"
 
-    DELETED_USER_USERNAME = "Deleted User"
-    POLICE_USER_USERNAME = "Police Station"
+    DELETED_USER_USERNAME = "Deleted_User"
+    POLICE_USER_USERNAME = "Police_Station"
     HOSPITAL_USER_USERNAME = "Hospital"
-    GOVERNMENTOFFICE_USER_USERNAME = "Government Office"
-    POSTOFFICE_USER_USERNAME = "Post Office"
-    PRIVATEBANK_USER_USERNAME = "Private Bank"
-    PUBLICBANK_USER_USERNAME = "Public Bank"
+    GOVERNMENTOFFICE_USER_USERNAME = "Government_Office"
+    POSTOFFICE_USER_USERNAME = "Post_Office"
+    PRIVATEBANK_USER_USERNAME = "Private_Bank"
+    PUBLICBANK_USER_USERNAME = "Public_Bank"
     CHARITY_USER_USERNAME = "Charity"
     SHOP_USER_USERNAME = "Shop"
