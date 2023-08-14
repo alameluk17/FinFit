@@ -55,3 +55,5 @@ class Transaction(models.Model):
     amount = models.FloatField(null=False)
     date = models.DateField(auto_now_add=True,null=False)
     purpose = models.CharField(max_length=2,choices=GAME_CONSTANTS.TRANSACTION_PURPOSES,null=False)
+    def __str__(self):
+        return f"Transaction {self.id}"
