@@ -11,6 +11,7 @@ class Player(models.Model):
     monthly_expenses = models.BigIntegerField(default=GAME_CONSTANTS.STARTING_MONTHLY_EXPENSES,null=False)
     monthly_salary = models.BigIntegerField(default=GAME_CONSTANTS.STARTING_MONTHLY_SALARY,null=False)
     government_id = models.CharField(max_length=GAME_CONSTANTS.GOVERNMENT_ID_LENGTH)
+    gender = models.CharField(max_length=1,choices=GAME_CONSTANTS.GENDERS,default=GAME_CONSTANTS.DEFAULT_GENDER,null=False)
     net_worth = models.BigIntegerField(default=GAME_CONSTANTS.STARTING_NET_WORTH,null=False)
     kindness_index = models.PositiveSmallIntegerField(null=False,default=GAME_CONSTANTS.STARTING_KINDESS_INDEX)
     happiness_index = models.PositiveSmallIntegerField(null=False,default=GAME_CONSTANTS.STARTING_HAPPINESS_INDEX)

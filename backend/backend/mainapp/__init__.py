@@ -2,7 +2,7 @@ from string import ascii_uppercase, digits
 
 # Some Game Constants:
 class GAME_CONSTANTS:
-    STARTING_ACCOUNT_BALANCE= 10000
+    STARTING_ACCOUNT_BALANCE= 0
     STARTING_MONTHLY_EXPENSES= 10000
     STARTING_MONTHLY_SALARY= 25000
     STARTING_KINDESS_INDEX= 20
@@ -44,3 +44,9 @@ class GAME_CONSTANTS:
     PUBLICBANK_USER_USERNAME = "Public_Bank"
     CHARITY_USER_USERNAME = "Charity"
     SHOP_USER_USERNAME = "Shop"
+    GENDERS= [
+        ("M" ,"MALE"),
+        ("F" ,"FEMALE"),
+        ("N" ,"NEITHER")
+    ]
+    DEFAULT_GENDER = "N"
