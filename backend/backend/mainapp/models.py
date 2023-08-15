@@ -67,6 +67,6 @@ class FixedDepositType(models.Model):
     term = models.IntegerField(null=False)
     interest_rate = models.FloatField(null=False)
     tax_on_return = models.BooleanField(null=False)
-
+    restricted_to_gender = models.CharField(max_length=1,choices=GAME_CONSTANTS.GENDERS,null=True) #What gender has access to it. Null means both.
     def __str__(self):
         return f"{self.location} {self.scheme_name}"
