@@ -21,7 +21,7 @@ class GAME_CONSTANTS:
         ("IH", "Individual House"),
         ("PL", "Plot"),
     ]
-    FD_TYPES = [
+    FD_STATUSES = [
         ("O","Ongoing"),
         ("B","Broken"),
         ("C","Completed")
@@ -33,7 +33,7 @@ class GAME_CONSTANTS:
         ("EM","Emergency"),
         ("SH","Shopping")
     ]
-    DEFAULT_FD_TYPE = "O"
+    DEFAULT_FD_STATUS = "O"
 
     DELETED_USER_USERNAME = "Deleted_User"
     POLICE_USER_USERNAME = "Police_Station"

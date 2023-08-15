@@ -37,7 +37,7 @@ class FixedDeposit(models.Model):
     interest = models.FloatField(null=False)
     term = models.IntegerField(null=False)
     start_date = models.DateField(null=False,auto_now_add=True)
-    status = models.CharField(max_length=1,choices=GAME_CONSTANTS.FD_TYPES,default=GAME_CONSTANTS.DEFAULT_FD_TYPE)
+    status = models.CharField(max_length=1,choices=GAME_CONSTANTS.FD_STATUSES,default=GAME_CONSTANTS.DEFAULT_FD_STATUS)
     owner = models.ForeignKey(Player,on_delete=models.CASCADE)
     location =  models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS)
 
@@ -58,3 +58,15 @@ class Transaction(models.Model):
     purpose = models.CharField(max_length=2,choices=GAME_CONSTANTS.TRANSACTION_PURPOSES,null=False)
     def __str__(self):
         return f"Transaction {self.id}"
+
+
+class FixedDepositType(models.Model):
+    location = models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS,null=False)
+    scheme_name = models.TextField()
+    breakable = models.BooleanField(null=False)
+    term = models.IntegerField(null=False)
+    interest_rate = models.FloatField(null=False)
+    tax_on_return = models.BooleanField(null=False)
+
+    def __str__(self):
+        return f"{self.location} {self.scheme_name}"
