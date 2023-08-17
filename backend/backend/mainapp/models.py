@@ -64,7 +64,7 @@ class Asset(models.Model):
     start_date = models.DateField(auto_now_add=True,null=False)
     buying_price = models.FloatField(null=False)
     value = models.FloatField(null=False)
-    location =  models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS)
+    up_for_sale = models.BooleanField(null=False, default=True)
 
 class Transaction(models.Model):
     # Note : Always ensure that you pass depositor and beneficiary when a transaction is made.
