@@ -32,14 +32,31 @@ class Player(models.Model):
         )
         return deleted_player.pk
 
-class FixedDeposit(models.Model):
-    principal = models.FloatField(null=False)
-    interest = models.FloatField(null=False)
+class FixedDepositType(models.Model):
+    location = models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS,null=False)
+    scheme_name = models.TextField()
+    breakable = models.BooleanField(null=False)
     term = models.IntegerField(null=False)
+    interest_rate = models.FloatField(null=False)
+    tax_on_return = models.BooleanField(null=False)
+    restricted_to_gender = models.CharField(max_length=1,choices=GAME_CONSTANTS.GENDERS,null=True) #What gender has access to it. Null means both.
+    @classmethod
+    def get_default_entity_pk(cls):
+        first_fixed_deposit_type = cls.objects.get(
+            id = 1 # Admin User Account's ID
+        )
+        return first_fixed_deposit_type.pk
+
+    def __str__(self):
+        return f"{self.location} {self.scheme_name}"
+
+
+class FixedDeposit(models.Model):
+    owner = models.ForeignKey(Player,on_delete=models.CASCADE)
+    principal = models.FloatField(null=False)
     start_date = models.DateField(null=False,auto_now_add=True)
     status = models.CharField(max_length=1,choices=GAME_CONSTANTS.FD_STATUSES,default=GAME_CONSTANTS.DEFAULT_FD_STATUS)
-    owner = models.ForeignKey(Player,on_delete=models.CASCADE)
-    location =  models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS)
+    fixed_deposit_type =  models.ForeignKey(FixedDepositType,null=False,on_delete=models.CASCADE,default=FixedDepositType.get_default_entity_pk)
 
 class Asset(models.Model):
     owner = models.ForeignKey(Player,null=False,on_delete=models.SET_DEFAULT,default=Player.get_default_entity_pk)
@@ -59,14 +76,3 @@ class Transaction(models.Model):
     def __str__(self):
         return f"Transaction {self.id}"
 
-
-class FixedDepositType(models.Model):
-    location = models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS,null=False)
-    scheme_name = models.TextField()
-    breakable = models.BooleanField(null=False)
-    term = models.IntegerField(null=False)
-    interest_rate = models.FloatField(null=False)
-    tax_on_return = models.BooleanField(null=False)
-    restricted_to_gender = models.CharField(max_length=1,choices=GAME_CONSTANTS.GENDERS,null=True) #What gender has access to it. Null means both.
-    def __str__(self):
-        return f"{self.location} {self.scheme_name}"

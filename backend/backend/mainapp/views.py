@@ -6,8 +6,8 @@ from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
-from .serializers import TransactionSerializer, UserSerializer, GroupSerializer, PlayerSerializer, RegisterEndpointSerializer
-from .models import Player, Transaction
+from .serializers import TransactionSerializer, UserSerializer, GroupSerializer, PlayerSerializer, RegisterEndpointSerializer,FixedDepositSerialiser
+from .models import FixedDeposit, Player, Transaction
 from .permissions import IsAdminOrReadOnly, IsPlayerDepositorOrAdmin, IsReadOnly, IsPlayerOwnerOrAdmin
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -58,3 +58,22 @@ class TransactionView(generics.CreateAPIView):
     queryset = Transaction.objects.all()
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = TransactionSerializer
+
+class FixedDepositViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Fixed Deposits to be viewed or edited.
+    """
+    # Apply appropriate permissions for each action
+    def get_permissions(self):
+        if self.action in ['list', 'retrieve']:
+            permission_classes = [IsReadOnly]
+        elif self.action in ['update', 'partial_update','destroy']:
+            permission_classes = [IsAdminOrReadOnly]
+        elif self.action in ['create']:
+            permission_classes = [IsPlayerOwnerOrAdmin]
+        else:
+            permission_classes = []
+        permission_classes += [permissions.IsAuthenticated]
+        return [permission() for permission in permission_classes]
+    queryset = FixedDeposit.objects.all()
+    serializer_class = FixedDepositSerialiser

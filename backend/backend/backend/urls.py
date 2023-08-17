@@ -24,6 +24,7 @@ router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 router.register(r'players', views.PlayerViewSet)
+router.register(r'deposit',views.FixedDepositViewSet) #named deposits so we can implement recurring deposits in future.
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

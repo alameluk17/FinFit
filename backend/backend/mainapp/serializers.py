@@ -2,7 +2,8 @@ from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
-from .models import Player, Transaction
+from .models import FixedDeposit, Player, Transaction
+from . import GAME_CONSTANTS
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -21,7 +22,7 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.HyperlinkedRelatedField(view_name='user-detail',queryset=User.objects.all())
     class Meta:
         model = Player
-        fields = ['user','wallet_balance','account_location','account_balance','monthly_expenses','monthly_salary','government_id','net_worth','kindness_index','happiness_index']
+        fields = ['user','gender','wallet_balance','account_location','account_balance','monthly_expenses','monthly_salary','government_id','net_worth','kindness_index','happiness_index']
 
 class TransactionSerializer(serializers.HyperlinkedModelSerializer):
     # We reiterate what a user is once more here so that drf knows what to hyperlink (I think)
@@ -66,6 +67,45 @@ class TransactionSerializer(serializers.HyperlinkedModelSerializer):
         
 
         return transaction
+
+class FixedDepositSerialiser(serializers.ModelSerializer):
+    current_user = serializers.SerializerMethodField('_user')
+
+    # Use this method for the custom field
+    def _user(self, obj):
+        request = self.context.get('request', None)
+        if request:
+            return request.user.id
+   
+    class Meta:
+        model = FixedDeposit
+        fields = ['principal','fixed_deposit_type','current_user']
+
+    def validate(self, attrs):
+        validation_errors = {}
+        
+        owner = Player.objects.get(user = self._user(None))
+        acc_bal = owner.account_balance
+
+        if(attrs['principal'] <= 0):
+            validation_errors['neg_principal'] = f"Cannot have an Fixed Deposit with Principal {attrs['principal']}."
+        if(acc_bal < attrs['principal']): 
+            validation_errors["principal"] = f"FD principal {attrs['principal']} is greater than account balance {acc_bal}"
+        if attrs["fixed_deposit_type"].restricted_to_gender and owner.gender!=attrs["fixed_deposit_type"].restricted_to_gender:
+            validation_errors["gender"] = f"The FD scheme {attrs['fixed_deposit_type']} is not open to your gender."
+        if validation_errors:
+            raise serializers.ValidationError(validation_errors)
+        return attrs
+        
+    def create(self, validated_data):
+        player = Player.objects.get(user = self._user(None))
+        fixed_deposit = FixedDeposit.objects.create(
+            owner=player,
+            principal=validated_data['principal'],
+            fixed_deposit_type = validated_data['fixed_deposit_type']
+        )
+        fixed_deposit.save()
+        return fixed_deposit
 
 class RegisterEndpointSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(

@@ -30,3 +30,7 @@ class IsPlayerDepositorOrAdmin(BasePermission):
 
         # Allow write access for player owner or admin
         return obj.depositor == request.user or request.user.is_staff
+
+class IsPlayerOwnerOrAdminOnly(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return obj.owner == request.user or request.user.is_staff
