@@ -26,12 +26,15 @@ class GAME_CONSTANTS:
         ("B","Broken"),
         ("C","Completed")
     ]
+    
+    BUY_ASSET_TRANSACTION_PURPOSE = "BA"
     TRANSACTION_PURPOSES = [
         ("CH" ,"Charity"),
         ("WW","WithdrawalFromWallet"),
         ("DW","DepositToWallet"),
         ("EM","Emergency"),
-        ("SH","Shopping")
+        ("SH","Shopping"),
+        (BUY_ASSET_TRANSACTION_PURPOSE,"BuyAsset")
     ]
     DEFAULT_FD_STATUS = "O"
 
