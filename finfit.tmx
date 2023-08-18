@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="64" height="32" tilewidth="64" tileheight="64" infinite="0" nextlayerid="8" nextobjectid="1">
- <tileset firstgid="1" source="TiledSpecifics/Grass.tsx"/>
- <tileset firstgid="17" source="TiledSpecifics/RoadTiles.tsx"/>
- <tileset firstgid="34" source="TiledSpecifics/SpecialBuildings.tsx"/>
- <tileset firstgid="124" source="TiledSpecifics/House.tsx"/>
- <tileset firstgid="248" source="TiledSpecifics/Trees.tsx"/>
- <tileset firstgid="290" source="TiledSpecifics/Park.tsx"/>
- <tileset firstgid="306" source="TiledSpecifics/Shops.tsx"/>
- <tileset firstgid="372" source="TiledSpecifics/OfflBuildings.tsx"/>
- <tileset firstgid="444" source="TiledSpecifics/CityHall.tsx"/>
- <tileset firstgid="489" source="TiledSpecifics/FoodAndCars.tsx"/>
+ <tileset firstgid="1" source="tilesets/Grass.tsx"/>
+ <tileset firstgid="17" source="tilesets/RoadTiles.tsx"/>
+ <tileset firstgid="34" source="tilesets/SpecialBuildings.tsx"/>
+ <tileset firstgid="124" source="tilesets/House.tsx"/>
+ <tileset firstgid="248" source="tilesets/Trees.tsx"/>
+ <tileset firstgid="290" source="tilesets/Park.tsx"/>
+ <tileset firstgid="306" source="tilesets/Shops.tsx"/>
+ <tileset firstgid="372" source="tilesets/OfflBuildings.tsx"/>
+ <tileset firstgid="444" source="tilesets/CityHall.tsx"/>
+ <tileset firstgid="489" source="tilesets/FoodAndCars.tsx"/>
  <layer id="1" name="Ground" width="64" height="32">
   <data encoding="csv">
 3,10,11,12,3,3,3,10,10,3,12,4,14,14,14,12,3,14,11,10,12,3,4,12,10,12,14,3,10,3,4,3,12,10,12,4,4,10,12,12,11,11,14,11,12,3,14,4,3,4,10,14,10,14,4,14,14,14,3,12,11,14,14,10,
