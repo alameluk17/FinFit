@@ -2,7 +2,7 @@ from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
-from .models import FixedDeposit, Player, Transaction
+from .models import FixedDeposit, Player, Transaction, Asset
 from . import GAME_CONSTANTS
 
 
@@ -141,3 +141,24 @@ class RegisterEndpointSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+
+class AssetSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Asset
+        fields = "__all__"
+        read_only_fields = ["asset_type","start_date","buying_price","value"]
+    def validate(self, data):
+        request = self.context['request']
+        action = self.context['view'].action
+        validation_errors = {}
+        if action == 'purchase':
+            if not data['up_for_sale']:
+                validation_errors["not_for_sale"] = "This asset is not for sale."
+            if data['owner'] != Player.objects.get(user = request.user):
+                validation_errors["not_owner"] = "You can't buy this asset for someone else."
+        elif action == 'sale':
+            if data['owner'] !=  Player.objects.get(user = request.user):
+                validation_errors["not_owner"] = "You don't own this asset."
+        if validation_errors:
+            raise serializers.ValidationError(validation_errors)
+        return data

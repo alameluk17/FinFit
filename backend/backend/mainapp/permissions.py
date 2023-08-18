@@ -34,3 +34,12 @@ class IsPlayerDepositorOrAdmin(BasePermission):
 class IsPlayerOwnerOrAdminOnly(BasePermission):
     def has_object_permission(self, request, view, obj):
         return obj.owner == request.user or request.user.is_staff
+
+class AssetEndpointNonAdminPermissions(BasePermission):
+    """
+    Custom permission to allow access only to the custom actions.
+    """
+
+    def has_permission(self, request, view):
+        # Allow access to custom actions or listing only
+        return (request.method in SAFE_METHODS or view.action in ['purchase', 'sale'])
