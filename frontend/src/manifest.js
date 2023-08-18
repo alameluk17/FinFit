@@ -12,7 +12,12 @@ const DataManifest = [
         name: "PressStart2P",
         type: "binary",
         src: "./data/fnt/PressStart2P.fnt"
-    }
+    },
+    {
+        name: "finfit_map",
+        type: "tmx",
+        src: "./data/map/finfit.tmx"
+    },
 ];
 
 export default DataManifest;
