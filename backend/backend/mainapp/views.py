@@ -63,6 +63,10 @@ class TransactionView(generics.CreateAPIView):
 
 
 class AssetViewSet(viewsets.ModelViewSet):
+    """
+    To purchase an asset as a user, simply send a post request to /asset/assetid/purchase
+    To put up or remove an asset from sale, send a post request to /asset/assetid/sale with the appropriate 'up_for_sale' parameter set.
+    """
     queryset = Asset.objects.all()
     serializer_class = AssetSerializer
 
@@ -80,23 +84,33 @@ class AssetViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'])
     def purchase(self, request, pk=None):
         instance = self.get_object()
-        if instance.up_for_sale and instance.owner != Player.objects.get(user = request.user):
-            instance.owner = Player.objects.get(user = request.user)
-            instance.up_for_sale = False
-            instance.save()
-            serializer = self.get_serializer(instance)
-            return Response(serializer.data)
-        return Response({'message': 'Asset cannot be purchased.'}, status=status.HTTP_400_BAD_REQUEST)
+        validation_errors = {}
+        if not instance.up_for_sale:
+            validation_errors["not_for_sale"] = f"This asset is not for sale."
+        if instance.owner == Player.objects.get(user = request.user):
+            validation_errors["already_owned"] = f"This asset is already yours!"
+        if validation_errors:
+            return Response(validation_errors, status=status.HTTP_400_BAD_REQUEST)
+        instance.owner = Player.objects.get(user = request.user)
+        instance.up_for_sale = False
+        instance.save()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
     @action(detail=True, methods=['post'])
     def sale(self, request, pk=None):
         instance = self.get_object()
-
-        if instance.owner == Player.objects.get(user = request.user) and not instance.up_for_sale:
-            instance.up_for_sale = True
-            instance.save()
-            return Response({'message': 'Asset put up for sale successfully.'})
+        if "up_for_sale" in request.data and request.data['up_for_sale'] == 'true':
+            up_for_sale = True
         else:
-            return Response({'message': 'Asset cannot be put up for sale.'}, status=status.HTTP_400_BAD_REQUEST)
+            up_for_sale = False
+        validation_errors = {}
+        if instance.owner != Player.objects.get(user = request.user):
+            validation_errors["not_players"] = f"You do not own this asset"
+        if validation_errors:
+            return Response(validation_errors, status=status.HTTP_400_BAD_REQUEST)
+        instance.up_for_sale = up_for_sale
+        instance.save()
+        return Response({'message': f'Asset {"put up for" if up_for_sale else "removed from"} sale successfully.'})
 
 class FixedDepositViewSet(viewsets.ModelViewSet):
     """
