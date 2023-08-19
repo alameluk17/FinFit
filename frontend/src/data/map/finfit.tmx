@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="64" height="32" tilewidth="64" tileheight="64" infinite="0" nextlayerid="11" nextobjectid="14">
+<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="64" height="32" tilewidth="64" tileheight="64" infinite="0" nextlayerid="11" nextobjectid="110">
  <tileset firstgid="1" source="../tilesets/Grass.tsx"/>
  <tileset firstgid="17" source="../tilesets/RoadTiles.tsx"/>
  <tileset firstgid="34" source="../tilesets/SpecialBuildings.tsx"/>
@@ -194,8 +194,94 @@
   <object id="1" name="mainPlayer" x="274.527" y="489.579" width="48" height="48"/>
  </objectgroup>
  <objectgroup id="10" name="collision">
-  <object id="11" name="apartment1" type="building" x="50.6667" y="136" width="87" height="173.333"/>
-  <object id="12" name="apartment2" type="building" x="215.333" y="9.33333" width="143.667" height="176"/>
-  <object id="13" name="building" type="hospital" x="207.877" y="257.966" width="159.592" height="171.132" rotation="359.075"/>
+  <object id="11" name="building" type="apartment1" x="50.6667" y="136.667" width="87" height="154"/>
+  <object id="12" name="building" type="apartment2" x="215.333" y="98" width="143.667" height="62.6667"/>
+  <object id="13" name="building" type="apartment1" x="207.877" y="257.966" width="159.592" height="171.132" rotation="359.075"/>
+  <object id="14" name="building" type="apartment1" x="434.5" y="138" width="87" height="150.666"/>
+  <object id="15" name="building" type="apartment2" x="243.333" y="9.16667" width="88.0833" height="89"/>
+  <object id="16" name="building" type="apartment3" x="437.833" y="905.334" width="87" height="146.333"/>
+  <object id="17" name="building" type="apartment4" x="114.833" y="1096.83" width="87" height="146.333"/>
+  <object id="18" name="building" type="apartment5" x="919.439" y="866.303" width="143.667" height="62.6667"/>
+  <object id="19" name="building" type="apartment5" x="948.152" y="779.636" width="88.0606" height="88"/>
+  <object id="20" name="building" type="apartment6" x="1496.17" y="865.303" width="143.667" height="62.6667"/>
+  <object id="21" name="building" type="apartment6" x="1523.97" y="777.273" width="88.0606" height="88"/>
+  <object id="22" name="building" type="apartment7" x="753.5" y="582.091" width="87" height="154.575"/>
+  <object id="23" name="building" type="apartment8" x="1649.5" y="582.122" width="87" height="153.211"/>
+  <object id="24" name="building" type="apartment9" x="51" y="1673.5" width="87" height="147.5"/>
+  <object id="25" name="building" type="apartment10" x="435.5" y="1672.92" width="87" height="147.5"/>
+  <object id="35" name="building" type="school" x="217" y="1697" width="142.5" height="59.5"/>
+  <object id="36" name="building" type="school" x="245.5" y="1649.5" width="86" height="48.5"/>
+  <object id="37" name="building" type="university" x="216.5" y="1953.5" width="141.5" height="58"/>
+  <object id="38" name="building" type="university" x="245.273" y="1868.36" width="85.0909" height="85.2727"/>
+  <object id="40" name="building" type="apartment11" x="2101.5" y="135.583" width="87" height="146.333"/>
+  <object id="41" name="building" type="apartment12" x="2677.25" y="136.583" width="87" height="146.333"/>
+  <object id="42" name="building" type="apartment13" x="3478.71" y="225.394" width="143.667" height="62.6667"/>
+  <object id="43" name="building" type="apartment13" x="3506.96" y="135.5" width="88.0833" height="89"/>
+  <object id="44" name="plot" type="plot1" x="3521" y="578" width="60" height="64"/>
+  <object id="45" name="plot" type="plot3" x="3583" y="578" width="60" height="64"/>
+  <object id="46" name="plot" type="plot3" x="3646" y="577" width="64" height="64"/>
+  <object id="47" name="plot" type="plot4" x="3521" y="643" width="60" height="64"/>
+  <object id="48" name="plot" type="plot5" x="3585" y="643" width="60" height="64"/>
+  <object id="49" name="plot" type="plot6" x="3649" y="641" width="60" height="64"/>
+  <object id="50" name="plot" type="plot7" x="3522" y="705" width="60" height="64"/>
+  <object id="51" name="plot" type="plot8" x="3586" y="706" width="60" height="64"/>
+  <object id="52" name="plot" type="plot9" x="3649" y="707" width="60" height="64"/>
+  <object id="53" name="plot" type="plot43" x="3520" y="1088" width="62.6667" height="64"/>
+  <object id="54" name="plot" type="plot44" x="3584" y="1088" width="62.6667" height="64"/>
+  <object id="55" name="plot" type="plot45" x="3648.67" y="1088.67" width="62.6667" height="64"/>
+  <object id="56" name="plot" type="plot46" x="3711.33" y="1088" width="62.6667" height="64"/>
+  <object id="57" name="plot" type="plot47" x="3776" y="1088.67" width="62.6667" height="64"/>
+  <object id="58" name="plot" type="plot48" x="3840" y="1088.67" width="62.6667" height="64"/>
+  <object id="59" name="plot" type="plot49" x="3902.67" y="1088.67" width="62.6667" height="64"/>
+  <object id="60" name="plot" type="plot50" x="3967.67" y="1089" width="62.6667" height="64"/>
+  <object id="61" name="plot" type="plot51" x="3520.67" y="1152" width="62.6667" height="64"/>
+  <object id="62" name="plot" type="plot59" x="3521.33" y="1218" width="62.6667" height="64"/>
+  <object id="63" name="plot" type="plot60" x="3584.33" y="1217.67" width="67.3334" height="64"/>
+  <object id="64" name="plot" type="plot52" x="3585.33" y="1153.33" width="62.6667" height="64"/>
+  <object id="65" name="plot" type="plot53" x="3650.67" y="1153.33" width="62.6667" height="64"/>
+  <object id="66" name="plot" type="plot61" x="3652" y="1216" width="62.6667" height="64"/>
+  <object id="67" name="plot" type="plot54" x="3715.33" y="1154" width="62.6667" height="64"/>
+  <object id="68" name="plot" type="plot55" x="3780" y="1154.67" width="62.6667" height="64"/>
+  <object id="69" name="plot" type="plot56" x="3842" y="1154.67" width="62.6667" height="64"/>
+  <object id="70" name="plot" type="plot57" x="3906" y="1154.67" width="62.6667" height="64"/>
+  <object id="71" name="plot" type="plot58" x="3968.67" y="1155.33" width="62.6667" height="64"/>
+  <object id="72" name="plot" type="plot62" x="3713.33" y="1218.67" width="62.6667" height="64"/>
+  <object id="73" name="plot" type="plot63" x="3775.33" y="1220" width="62.6667" height="64"/>
+  <object id="74" name="plot" type="plot64" x="3843.33" y="1218" width="62.6667" height="64"/>
+  <object id="75" name="plot" type="plot65" x="3908" y="1219.33" width="62.6667" height="64"/>
+  <object id="76" name="plot" type="plot66" x="3971.33" y="1218.67" width="62.6667" height="64"/>
+  <object id="77" name="plot" type="plot10" x="3776.67" y="577.333" width="62.6667" height="64"/>
+  <object id="78" name="plot" type="plot14" x="3776.67" y="642.667" width="62.6667" height="64"/>
+  <object id="79" name="plot" type="plot18" x="3776.67" y="705.333" width="62.6667" height="64"/>
+  <object id="80" name="plot" type="plot19" x="3840.67" y="705.333" width="62.6667" height="64"/>
+  <object id="81" name="plot" type="plot20" x="3905.33" y="705.333" width="62.6667" height="64"/>
+  <object id="82" name="plot" type="plot21" x="3968.67" y="704" width="62.6667" height="64"/>
+  <object id="83" name="plot" type="plot11" x="3840.67" y="577.333" width="62.6667" height="64"/>
+  <object id="84" name="plot" type="plot12" x="3905.33" y="576" width="62.6667" height="64"/>
+  <object id="85" name="plot" type="plot13" x="3970" y="576.667" width="62.6667" height="64"/>
+  <object id="86" name="plot" type="plot15" x="3841.33" y="642" width="62.6667" height="64"/>
+  <object id="87" name="plot" type="plot16" x="3906.67" y="642" width="62.6667" height="64"/>
+  <object id="88" name="plot" type="plot17" x="3970" y="640.667" width="62.6667" height="64"/>
+  <object id="89" name="plot" type="plot22" x="3519.67" y="832.333" width="62.6667" height="64"/>
+  <object id="90" name="plot" type="plot23" x="3584" y="832" width="62.6667" height="64"/>
+  <object id="91" name="plot" type="plot24" x="3648" y="831.667" width="62.6667" height="64"/>
+  <object id="92" name="plot" type="plot25" x="3712" y="832" width="62.6667" height="64"/>
+  <object id="93" name="plot" type="plot26" x="3520.33" y="896.667" width="62.6667" height="64"/>
+  <object id="94" name="plot" type="plot27" x="3582.67" y="896.667" width="62.6667" height="64"/>
+  <object id="95" name="plot" type="plot28" x="3646.67" y="895.667" width="62.6667" height="64"/>
+  <object id="96" name="plot" type="plot29" x="3712" y="895.667" width="62.6667" height="64"/>
+  <object id="97" name="plot" type="plot30" x="3520.67" y="960.667" width="62.6667" height="64"/>
+  <object id="98" name="plot" type="plot31" x="3583.33" y="959.667" width="62.6667" height="64"/>
+  <object id="99" name="plot" type="plot32" x="3647.67" y="960" width="62.6667" height="64"/>
+  <object id="100" name="plot" type="plot33" x="3712" y="960.667" width="62.6667" height="64"/>
+  <object id="101" name="plot" type="plot34" x="3840.33" y="831" width="62.6667" height="64"/>
+  <object id="102" name="plot" type="plot35" x="3904.67" y="831.333" width="62.6667" height="64"/>
+  <object id="103" name="plot" type="plot36" x="3968.33" y="832" width="62.6667" height="64"/>
+  <object id="104" name="plot" type="plot37" x="3840.67" y="895.667" width="62.6667" height="64"/>
+  <object id="105" name="plot" type="plot40" x="3840.33" y="959.333" width="62.6667" height="64"/>
+  <object id="106" name="plot" type="plot38" x="3904.67" y="896" width="62.6667" height="64"/>
+  <object id="107" name="plot" type="plot39" x="3968" y="896" width="62.6667" height="64"/>
+  <object id="108" name="plot" type="plot41" x="3903.67" y="960.333" width="62.6667" height="64"/>
+  <object id="109" name="plot" type="plot42" x="3967.67" y="960.333" width="62.6667" height="64"/>
  </objectgroup>
 </map>
