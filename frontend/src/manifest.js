@@ -121,6 +121,11 @@ const DataManifest = [
         name: "Trees",
         type: "image",
         src:  "./data/img/spritesheets/Trees.png"
+    },
+    {
+        name: "Parabellum_Retro_RPG_Characters_V3_Colour",
+        type: "image",
+        src:  "./data/img/spritesheets/Parabellum_Retro_RPG_Characters_V3_Colour.png"
     }
 ];
 
