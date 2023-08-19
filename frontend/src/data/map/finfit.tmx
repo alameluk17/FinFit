@@ -196,6 +196,6 @@
  <objectgroup id="10" name="collision">
   <object id="11" name="apartment1" type="building" x="50.6667" y="136" width="87" height="173.333"/>
   <object id="12" name="apartment2" type="building" x="215.333" y="9.33333" width="143.667" height="176"/>
-  <object id="13" name="building" type="hospital" x="207.877" y="257.966" width="159.592" height="189.065" rotation="359.075"/>
+  <object id="13" name="building" type="hospital" x="207.877" y="257.966" width="159.592" height="171.132" rotation="359.075"/>
  </objectgroup>
 </map>
