@@ -6,7 +6,11 @@ import {
     video,
     utils,
     plugin,
-    pool
+    pool,
+    event,
+    game,
+    input,
+    level
 } from "melonjs";
 
 import "index.css";
@@ -18,10 +22,43 @@ import PlayerEntity from "js/renderables/player.js";
 import DataManifest from "manifest.js";
 
 
+function keyPressed(action, keyCode) {
+    console.log(keyCode)
+    // navigate the map :)
+    if (keyCode === input.KEY.LEFT) {
+        game.viewport.move(-(level.getCurrentLevel().tilewidth / 2), 0);
+    }
+    if (keyCode === input.KEY.RIGHT) {
+        game.viewport.move(level.getCurrentLevel().tilewidth / 2, 0);
+    }
+    if (keyCode === input.KEY.UP) {
+        game.viewport.move(0, -(level.getCurrentLevel().tileheight / 2));
+    }
+    if (keyCode === input.KEY.DOWN) {
+        game.viewport.move(0, level.getCurrentLevel().tileheight / 2);
+    }
+
+    // shake it
+    if (keyCode === input.KEY.ENTER) {
+        game.viewport.shake(16, 500);
+    }
+
+    //zoom in/out
+    if (keyCode === input.KEY.MINUS) {
+        console.log("zoom out");
+    }
+    if (keyCode === input.KEY.PLUS) {
+        console.log("zoom in");
+    }
+
+    // force redraw
+    game.repaint();
+}
+
 device.onReady(() => {
 
     // initialize the display canvas once the device/browser is ready
-    if (!video.init(1218, 562, {parent : "screen", scale : "auto"})) {
+    if (!video.init(640, 480, {parent : "screen", scale : "auto",scaleMethod : "flex"})) {
         alert("Your browser does not support HTML5 canvas.");
         return;
     }
@@ -46,6 +83,7 @@ device.onReady(() => {
         state.set(state.MENU, new TitleScreen());
         state.set(state.PLAY, new PlayScreen());
 
+        event.on(event.KEYDOWN, (e,k)=>{keyPressed(e,k);});
         // add our player entity in the entity pool
         pool.register("mainPlayer", PlayerEntity);
 
