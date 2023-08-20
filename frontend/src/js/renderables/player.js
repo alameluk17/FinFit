@@ -1,4 +1,4 @@
-import { Entity, game,video,loader,collision,TextureAtlas,input,Vector2d} from "melonjs";
+import { Entity, game,level,loader,collision,TextureAtlas,input,Vector2d} from "melonjs";
 
 class PlayerEntity extends Entity {
 
@@ -90,6 +90,7 @@ class PlayerEntity extends Entity {
             this.body.force.y = 0;
         }
 
+        // if(this.body.x > level.getCurrentLevel().getBounds())
         return (super.update(dt) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
     }
 

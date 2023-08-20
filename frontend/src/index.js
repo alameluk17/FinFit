@@ -54,9 +54,8 @@ device.onReady(() => {
         // event.on(event.KEYDOWN, (e,k)=>{keyPressed(e,k);});
         // add our player entity in the entity pool
         pool.register("mainPlayer", PlayerEntity);
-        pool.register("apartment1",BuildingEntity)
-        pool.register("apartment2",BuildingEntity)
         pool.register("building",BuildingEntity)
+        pool.register("plot",BuildingEntity)
        
         input.bindKey(input.KEY.LEFT,  "left");
         input.bindKey(input.KEY.RIGHT, "right");

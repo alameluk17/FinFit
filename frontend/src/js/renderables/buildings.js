@@ -9,7 +9,7 @@ class BuildingEntity extends Entity{
             this.panel = null;
             this.body.setFriction(0, 0);
             this.lastCollisionTime = timer.getTime();
-            this.body.collisionType = collision.types.WORLD_SHAPE;
+            this.body.collisionType = collision.types.ACTION_OBJECT;
         }
         onCollision(response, other) {
             return false;
