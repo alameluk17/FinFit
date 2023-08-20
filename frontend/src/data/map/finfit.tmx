@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="64" height="32" tilewidth="64" tileheight="64" infinite="0" nextlayerid="11" nextobjectid="158">
+<map version="1.10" tiledversion="1.10.0" orientation="orthogonal" renderorder="right-down" width="64" height="32" tilewidth="64" tileheight="64" infinite="0" nextlayerid="11" nextobjectid="300">
  <tileset firstgid="1" source="../tilesets/Grass.tsx"/>
  <tileset firstgid="17" source="../tilesets/RoadTiles.tsx"/>
  <tileset firstgid="34" source="../tilesets/SpecialBuildings.tsx"/>
@@ -190,7 +190,7 @@
 0,0,0,118,119,120,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,138,139,136,137,0,0,0,0,121,122,123,0,112,113,114,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="8" name="mainPlayer">
+ <objectgroup color="#00aa00" id="8" name="mainPlayer">
   <object id="1" name="mainPlayer" x="274.527" y="489.579" width="48" height="48"/>
  </objectgroup>
  <objectgroup color="#0000ff" id="10" name="collision">
@@ -326,5 +326,221 @@
   <object id="151" name="building" type="border_bottom" x="-0.29" y="2048.29" width="4097.33" height="4.66667"/>
   <object id="155" name="building" type="border_left" x="-5.26136" y="-4.625" width="5.01136" height="2057.69"/>
   <object id="157" name="building" type="border_right" x="4096.68" y="-4.75409" width="10.5114" height="2057.69"/>
+  <object id="159" name="building" type="house1" x="76.0833" y="675" width="167.25" height="103"/>
+  <object id="160" name="building" type="house1" x="78.8333" y="675.083">
+   <polygon points="0,0 36.6667,-19 73.3333,0"/>
+  </object>
+  <object id="161" name="building" type="house1" x="165.333" y="674.333">
+   <polygon points="0,0 37.6667,-21.6667 78,0.333333"/>
+  </object>
+  <object id="166" name="building" type="house2" x="279.75" y="773.25" width="78.75" height="18.75"/>
+  <object id="167" name="building" type="house2" x="284.75" y="704.75" width="70" height="68.75"/>
+  <object id="172" name="building" type="house3" x="405.75" y="729" width="84.25" height="53.75"/>
+  <object id="173" name="building" type="house3" x="406" y="729.25">
+   <polygon points="0,0 42,-25 82.5,-1.25"/>
+  </object>
+  <object id="178" name="building" type="house4" x="1173.54" y="471.458" width="84.25" height="53.75"/>
+  <object id="179" name="building" type="house5" x="1301.21" y="87.125" width="84.25" height="53.75"/>
+  <object id="181" name="building" type="house4" x="1172.67" y="473.333">
+   <polygon points="0,0 42.6667,-25.6667 84,-2"/>
+  </object>
+  <object id="182" name="building" type="house5" x="1300.67" y="88">
+   <polygon points="0,0 43.3333,-24 83.6667,-2"/>
+  </object>
+  <object id="183" name="building" type="house6" x="788.875" y="1175.46" width="84.25" height="53.75"/>
+  <object id="184" name="building" type="house6" x="789.333" y="1176.33">
+   <polygon points="0,0 43.3333,-25.6667 82.6667,-0.666667"/>
+  </object>
+  <object id="185" name="building" type="shop1" x="1184.54" y="1445.13" width="124.917" height="82.4167"/>
+  <object id="186" name="building" type="shop1" x="1186.67" y="1444.67">
+   <polygon points="0,0 62.5537,-37 119.333,-0.961039"/>
+  </object>
+  <object id="187" name="building" type="shop2" x="1499.33" y="1154" width="136.667" height="110"/>
+  <object id="188" name="building" type="shop3" x="1230.67" y="1158" width="161.333" height="106.667"/>
+  <object id="189" name="building" type="shop4" x="1753.33" y="1153.33" width="141.333" height="109.333"/>
+  <object id="190" name="building" type="shop5" x="2009.33" y="1154" width="139.333" height="108"/>
+  <object id="191" name="building" type="shop6" x="2272.75" y="1189.46" width="126.372" height="82.4167"/>
+  <object id="192" name="building" type="shop6" x="2272" y="1189">
+   <polygon points="0,0 65.5241,-37 125,-0.961039"/>
+  </object>
+  <object id="193" name="building" type="shop7" x="2524.33" y="1155" width="136.667" height="110"/>
+  <object id="194" name="building" type="shop8" x="2512" y="1413.33" width="160.667" height="102"/>
+  <object id="196" name="building" type="bakery" x="2955.5" y="1683.5" width="169" height="92"/>
+  <object id="198" name="building" type="cafe" x="3225.5" y="1690.5" width="144.5" height="86.5"/>
+  <object id="199" name="building" type="fastfoodjoint" x="3498" y="1693" width="106.5" height="95"/>
+  <object id="201" name="building" type="restaurant" x="3722.5" y="1694" width="165" height="101"/>
+  <object id="202" name="building" type="house7" x="77.8333" y="1315.5" width="165" height="102"/>
+  <object id="203" name="building" type="house7" x="79.25" y="1315.5">
+   <polygon points="0,0 36.6667,-19 73.3333,0"/>
+  </object>
+  <object id="204" name="building" type="house7" x="165" y="1315.25">
+   <polygon points="0,0 39.5417,-22.75 79.0833,0"/>
+  </object>
+  <object id="206" name="building" type="house6" x="272.25" y="935" width="101.25" height="34.75"/>
+  <object id="207" name="building" type="house6" x="318.875" y="934.75">
+   <polygon points="0,0 26.375,-16.875 54.75,-0.38645"/>
+  </object>
+  <object id="208" name="building" type="house8" x="83.125" y="955.125" width="95.5" height="34.75"/>
+  <object id="209" name="building" type="house8" x="124.75" y="955.25">
+   <polygon points="0,0 26.375,-16.875 54.75,-0.38645"/>
+  </object>
+  <object id="210" name="building" type="house9" x="71.25" y="920.227" width="49.25" height="31.5227"/>
+  <object id="213" name="building" type="house10" x="524.833" y="1317.67" width="165" height="102"/>
+  <object id="214" name="building" type="house10" x="525.708" y="1317.54">
+   <polygon points="0,0 38.1667,-23.625 76.3333,0"/>
+  </object>
+  <object id="215" name="building" type="house10" x="611.5" y="1317.63">
+   <polygon points="0,0 40.7292,-25.875 81.4583,0"/>
+  </object>
+  <object id="216" name="building" type="house11" x="611.455" y="1168.36" width="57.4545" height="75.8182"/>
+  <object id="219" name="building" type="house12" x="803.273" y="1360.09" width="57.4545" height="75.8182"/>
+  <object id="222" name="building" type="house11" x="611.667" y="1168.67">
+   <polygon points="0,0 28.3333,-17 57.3333,0.333333"/>
+  </object>
+  <object id="223" name="building" type="house12" x="804" y="1360.33">
+   <polygon points="0,0 28.3333,-17 57.3333,0.333333"/>
+  </object>
+  <object id="227" name="building" type="house9" x="71.7273" y="919.909">
+   <polygon points="0,0 24.0909,-15.0909 48.9091,0.0909091"/>
+  </object>
+  <object id="228" name="building" type="house13" x="339.854" y="1402.82" width="95.5" height="34.75"/>
+  <object id="229" name="building" type="house13" x="381.812" y="1403.87">
+   <polygon points="0,0 26.375,-16.875 54.75,-0.38645"/>
+  </object>
+  <object id="230" name="building" type="house13" x="327.312" y="1368.51" width="49.25" height="34.1894"/>
+  <object id="231" name="building" type="house13" x="328.123" y="1368.52">
+   <polygon points="0,0 24.0909,-15.0909 48.9091,0.0909091"/>
+  </object>
+  <object id="232" name="building" type="house14" x="1048.62" y="388.208" width="78.75" height="18.75"/>
+  <object id="233" name="building" type="house14" x="1053.62" y="319.708" width="70" height="68.75"/>
+  <object id="234" name="building" type="house15" x="1227.04" y="291.167" width="167.25" height="103"/>
+  <object id="235" name="building" type="house15" x="1229.79" y="291.25">
+   <polygon points="0,0 36.6667,-19 73.3333,0"/>
+  </object>
+  <object id="236" name="building" type="house15" x="1316.29" y="290.5">
+   <polygon points="0,0 37.6667,-21.6667 78,0.333333"/>
+  </object>
+  <object id="237" name="building" type="house16" x="907.708" y="100.5" width="167.25" height="103"/>
+  <object id="238" name="building" type="house16" x="910.458" y="100.583">
+   <polygon points="0,0 36.6667,-19 73.3333,0"/>
+  </object>
+  <object id="239" name="building" type="house16" x="996.958" y="99.833">
+   <polygon points="0,0 37.6667,-21.6667 78,0.333333"/>
+  </object>
+  <object id="240" name="building" type="house17" x="1168.65" y="167.08" width="101.25" height="34.75"/>
+  <object id="241" name="building" type="house17" x="1215.27" y="166.83">
+   <polygon points="0,0 26.375,-16.875 54.75,-0.38645"/>
+  </object>
+  <object id="242" name="building" type="house18" x="906.5" y="359.625" width="101.25" height="34.75"/>
+  <object id="243" name="building" type="house18" x="961.125" y="359.375">
+   <polygon points="0,0 -26.375,-16.875 -54.75,-0.38645"/>
+  </object>
+  <object id="244" name="building" type="house19" x="1364.87" y="1882.12" width="84.25" height="53.75"/>
+  <object id="245" name="building" type="house19" x="1365.33" y="1882.99">
+   <polygon points="0,0 43.3333,-25.6667 82.6667,-0.666667"/>
+  </object>
+  <object id="246" name="building" type="house20" x="1428.87" y="1753.79" width="84.25" height="53.75"/>
+  <object id="247" name="building" type="house20" x="1429.33" y="1754.66">
+   <polygon points="0,0 43.3333,-25.6667 82.6667,-0.666667"/>
+  </object>
+  <object id="248" name="building" type="house21" x="1492.87" y="1881.79" width="84.25" height="53.75"/>
+  <object id="249" name="building" type="house21" x="1493.33" y="1882.66">
+   <polygon points="0,0 43.3333,-25.6667 82.6667,-0.666667"/>
+  </object>
+  <object id="250" name="building" type="house22" x="1621.21" y="1881.46" width="84.25" height="53.75"/>
+  <object id="251" name="building" type="house22" x="1621.67" y="1882.33">
+   <polygon points="0,0 43.3333,-25.6667 82.6667,-0.666667"/>
+  </object>
+  <object id="252" name="building" type="house23" x="1748.87" y="1945.46" width="84.25" height="53.75"/>
+  <object id="253" name="building" type="house23" x="1749.33" y="1946.33">
+   <polygon points="0,0 43.3333,-25.6667 82.6667,-0.666667"/>
+  </object>
+  <object id="254" name="building" type="house24" x="1878.21" y="1944.79" width="84.25" height="53.75"/>
+  <object id="255" name="building" type="house24" x="1878.67" y="1945.66">
+   <polygon points="0,0 43.3333,-25.6667 82.6667,-0.666667"/>
+  </object>
+  <object id="256" name="building" type="house25" x="1811.19" y="1850.78" width="95.5" height="34.75"/>
+  <object id="257" name="building" type="house25" x="1853.15" y="1851.83">
+   <polygon points="0,0 26.375,-16.875 54.75,-0.38645"/>
+  </object>
+  <object id="258" name="building" type="house25" x="1798.65" y="1816.47" width="49.25" height="34.1894"/>
+  <object id="259" name="building" type="house25" x="1799.46" y="1816.48">
+   <polygon points="0,0 24.0909,-15.0909 48.9091,0.0909091"/>
+  </object>
+  <object id="260" name="building" type="house26" x="1680.04" y="1765.96" width="101.25" height="34.75"/>
+  <object id="261" name="building" type="house26" x="1726.66" y="1765.71">
+   <polygon points="0,0 26.375,-16.875 54.75,-0.38645"/>
+  </object>
+  <object id="262" name="building" type="house27" x="1546.16" y="1766.5" width="101.25" height="34.75"/>
+  <object id="263" name="building" type="house27" x="1600.79" y="1766.25">
+   <polygon points="0,0 -26.375,-16.875 -54.75,-0.38645"/>
+  </object>
+  <object id="264" name="building" type="house28" x="3093.54" y="792.792" width="84.25" height="53.75"/>
+  <object id="265" name="building" type="house28" x="3094" y="793.662">
+   <polygon points="0,0 43.3333,-25.6667 82.6667,-0.666667"/>
+  </object>
+  <object id="266" name="building" type="house29" x="2964.54" y="920.792" width="84.25" height="53.75"/>
+  <object id="267" name="building" type="house29" x="2965" y="921.662">
+   <polygon points="0,0 43.3333,-25.6667 82.6667,-0.666667"/>
+  </object>
+  <object id="268" name="building" type="house30" x="2836.54" y="793.792" width="84.25" height="53.75"/>
+  <object id="269" name="building" type="house30" x="2837" y="794.662">
+   <polygon points="0,0 43.3333,-25.6667 82.6667,-0.666667"/>
+  </object>
+  <object id="270" name="building" type="house31" x="2835.27" y="698.28" width="95.5" height="34.75"/>
+  <object id="271" name="building" type="house31" x="2877.23" y="699.33">
+   <polygon points="0,0 26.375,-16.875 54.75,-0.38645"/>
+  </object>
+  <object id="272" name="building" type="house31" x="2822.73" y="663.97" width="49.25" height="34.1894"/>
+  <object id="273" name="building" type="house31" x="2823.54" y="663.98">
+   <polygon points="0,0 24.0909,-15.0909 48.9091,0.0909091"/>
+  </object>
+  <object id="276" name="building" type="house32" x="2703.71" y="742.958" width="101.25" height="34.75"/>
+  <object id="277" name="building" type="house32" x="2750.33" y="742.708">
+   <polygon points="0,0 26.375,-16.875 54.75,-0.38645"/>
+  </object>
+  <object id="278" name="building" type="house33" x="3085.17" y="1123" width="165" height="102"/>
+  <object id="279" name="building" type="house33" x="3086.58" y="1123">
+   <polygon points="0,0 36.6667,-19 73.3333,0"/>
+  </object>
+  <object id="280" name="building" type="house33" x="3172.33" y="1122.75">
+   <polygon points="0,0 39.5417,-22.75 79.0833,0"/>
+  </object>
+  <object id="281" name="building" type="house34" x="2888.05" y="1047.88" width="111.803" height="69.1146"/>
+  <object id="282" name="building" type="house7" x="2889.01" y="1047.88">
+   <polygon points="0,0 24.8451,-12.8743 49.6902,0"/>
+  </object>
+  <object id="283" name="building" type="house7" x="2947.12" y="1047.71">
+   <polygon points="0,0 26.7932,-15.4153 53.5864,0"/>
+  </object>
+  <object id="284" name="building" type="house35" x="3085.17" y="932" width="165" height="102"/>
+  <object id="285" name="building" type="house35" x="3086.58" y="932">
+   <polygon points="0,0 36.6667,-19 73.3333,0"/>
+  </object>
+  <object id="286" name="building" type="house35" x="3172.33" y="931.75">
+   <polygon points="0,0 39.5417,-22.75 79.0833,0"/>
+  </object>
+  <object id="287" name="building" type="house36" x="2968.38" y="773.125" width="78.75" height="18.75"/>
+  <object id="288" name="building" type="house36" x="2973.38" y="704.625" width="70" height="68.75"/>
+  <object id="289" name="building" type="house37" x="3107.09" y="656.818" width="57.4545" height="75.8182"/>
+  <object id="290" name="building" type="house37" x="3107.3" y="657.128">
+   <polygon points="0,0 28.3333,-17 57.3333,0.333333"/>
+  </object>
+  <object id="291" name="building" type="house38" x="3028.96" y="27.375" width="84.25" height="53.75"/>
+  <object id="292" name="building" type="house38" x="3029.67" y="26.495">
+   <polygon points="0,0 43.3333,-25.6667 82.6667,-0.666667"/>
+  </object>
+  <object id="293" name="building" type="house39" x="3222.13" y="26.875" width="84.25" height="53.75"/>
+  <object id="294" name="building" type="house39" x="3222.84" y="25.995">
+   <polygon points="0,0 43.3333,-25.6667 82.6667,-0.666667"/>
+  </object>
+  <object id="295" name="building" type="house40" x="3797.88" y="26.125" width="84.25" height="53.75"/>
+  <object id="296" name="building" type="house40" x="3798.59" y="25.245">
+   <polygon points="0,0 43.3333,-25.6667 82.6667,-0.666667"/>
+  </object>
+  <object id="297" name="building" type="house41" x="3989.63" y="27.125" width="84.25" height="53.75"/>
+  <object id="298" name="building" type="house41" x="3990.34" y="26.245">
+   <polygon points="0,0 43.3333,-25.6667 82.6667,-0.666667"/>
+  </object>
  </objectgroup>
 </map>
