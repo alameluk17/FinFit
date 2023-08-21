@@ -1,4 +1,4 @@
-import { Entity, game,level,loader,collision,TextureAtlas,input,Vector2d} from "melonjs";
+import { Entity,pool, game,level,loader,collision,TextureAtlas,input,Vector2d} from "melonjs";
 
 class PlayerEntity extends Entity {
 
@@ -8,6 +8,7 @@ class PlayerEntity extends Entity {
     constructor(x, y, settings) {
         // call the parent constructor
         super(x, y , settings);
+        this.u = pool.pull("UIContainer",game.viewport.width/2,game.viewport.height/2,game.viewport.width/3,game.viewport.width/2,"Hello",{});
         this.isKinematic = false;
         this.walkingforce = 0.5;
         this.body.collisionType = collision.types.PLAYER_OBJECT;
@@ -54,40 +55,51 @@ class PlayerEntity extends Entity {
                     break;
             }
         }
-        if (input.isKeyPressed("left")) {
-            this.facingdirection = "left"
-            this.body.force.x = -this.walkingforce;
-            if (!this.renderable.isCurrentAnimation("walk_left")) {
-                this.renderable.flipX(true)
-                this.renderable.setCurrentAnimation("walk_right");
-            }
-        } else if (input.isKeyPressed("right")) {
-            this.facingdirection = "left"
-            this.body.force.x = this.walkingforce
-            this.renderable.flipX(false)
-            if (!this.renderable.isCurrentAnimation("walk_right")) {
-                this.renderable.setCurrentAnimation("walk_right");
-            }
-        } else {
-            this.body.force.x = 0;
-        }
 
-        if (input.isKeyPressed("up")) {
-            this.facingdirection = "up"
-            // update the entity velocity
-            this.body.force.y = -this.walkingforce
-            if (!this.renderable.isCurrentAnimation("walk_up") && this.body.vel.x === 0) {
-                this.renderable.setCurrentAnimation("walk_up");
+        if(input.isKeyPressed("action")){
+            if (game.world.hasChild(this.u)){
+                game.world.removeChild(this.u,true)
             }
-        } else if (input.isKeyPressed("down")) {
-            this.facingdirection = "down"
-            // update the entity velocity
-            this.body.force.y = this.walkingforce
-            if (!this.renderable.isCurrentAnimation("walk_down") && this.body.vel.x === 0) {
-                this.renderable.setCurrentAnimation("walk_down");
+            else{
+                game.world.addChild(this.u)
             }
-        } else {
-            this.body.force.y = 0;
+        }
+        if (!game.world.hasChild(this.u)){
+            if (input.isKeyPressed("left")) {
+                this.facingdirection = "left"
+                this.body.force.x = -this.walkingforce;
+                if (!this.renderable.isCurrentAnimation("walk_left")) {
+                    this.renderable.flipX(true)
+                    this.renderable.setCurrentAnimation("walk_right");
+                }
+            } else if (input.isKeyPressed("right")) {
+                this.facingdirection = "left"
+                this.body.force.x = this.walkingforce
+                this.renderable.flipX(false)
+                if (!this.renderable.isCurrentAnimation("walk_right")) {
+                    this.renderable.setCurrentAnimation("walk_right");
+                }
+            } else {
+                this.body.force.x = 0;
+            }
+    
+            if (input.isKeyPressed("up")) {
+                this.facingdirection = "up"
+                // update the entity velocity
+                this.body.force.y = -this.walkingforce
+                if (!this.renderable.isCurrentAnimation("walk_up") && this.body.vel.x === 0) {
+                    this.renderable.setCurrentAnimation("walk_up");
+                }
+            } else if (input.isKeyPressed("down")) {
+                this.facingdirection = "down"
+                // update the entity velocity
+                this.body.force.y = this.walkingforce
+                if (!this.renderable.isCurrentAnimation("walk_down") && this.body.vel.x === 0) {
+                    this.renderable.setCurrentAnimation("walk_down");
+                }
+            } else {
+                this.body.force.y = 0;
+            }
         }
 
         // if(this.body.x > level.getCurrentLevel().getBounds())

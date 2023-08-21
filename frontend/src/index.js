@@ -19,6 +19,7 @@ import TitleScreen from "js/stage/title.js";
 import PlayScreen from "js/stage/play.js";
 import PlayerEntity from "js/renderables/player.js";
 import BuildingEntity from "js/renderables/buildings.js";
+import UIContainer from "js/renderables/panels.js";
 
 import DataManifest from "manifest.js";
 
@@ -56,6 +57,7 @@ device.onReady(() => {
         pool.register("mainPlayer", PlayerEntity);
         pool.register("building",BuildingEntity)
         pool.register("plot",BuildingEntity)
+        pool.register("UIContainer",UIContainer)
        
         input.bindKey(input.KEY.LEFT,  "left");
         input.bindKey(input.KEY.RIGHT, "right");

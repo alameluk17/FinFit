@@ -126,6 +126,11 @@ const DataManifest = [
         name: "Parabellum_Retro_RPG_Characters_V3_Colour",
         type: "image",
         src:  "./data/img/spritesheets/Parabellum_Retro_RPG_Characters_V3_Colour.png"
+    },
+    {
+        name: "UIContainerSprite",
+        type: "image",
+        src:  "./data/img/UIContainer.png"
     }
 ];
 

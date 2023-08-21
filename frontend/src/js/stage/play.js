@@ -9,7 +9,6 @@ class PlayScreen extends Stage {
      */
     onResetEvent() {
         level.load("finfit_map")
-        game.world.addChild(new UIContainer(0,0,500,500,"Hello"))
     }
 };
 
