@@ -56,14 +56,6 @@ class PlayerEntity extends Entity {
             }
         }
 
-        if(input.isKeyPressed("action")){
-            if (game.world.hasChild(this.u)){
-                game.world.removeChild(this.u,true)
-            }
-            else{
-                game.world.addChild(this.u)
-            }
-        }
         if (!game.world.hasChild(this.u)){
             if (input.isKeyPressed("left")) {
                 this.facingdirection = "left"
