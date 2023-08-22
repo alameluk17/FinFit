@@ -8,7 +8,6 @@ class PlayerEntity extends Entity {
     constructor(x, y, settings) {
         // call the parent constructor
         super(x, y , settings);
-        this.u = pool.pull("UIContainer",game.viewport.width/2,game.viewport.height/2,game.viewport.width/3,game.viewport.width/2,"Hello",{});
         this.isKinematic = false;
         this.walkingforce = 0.5;
         this.body.collisionType = collision.types.PLAYER_OBJECT;
@@ -56,7 +55,7 @@ class PlayerEntity extends Entity {
             }
         }
 
-        if (!game.world.hasChild(this.u)){
+        if (!document.getElementById("userdialog").open){
             if (input.isKeyPressed("left")) {
                 this.facingdirection = "left"
                 this.body.force.x = -this.walkingforce;
