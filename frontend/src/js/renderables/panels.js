@@ -11,7 +11,7 @@ class UIContainer extends UIBaseElement {
         // back panel sprite
         let texturemap =  new TextureAtlas(
             { framewidth: 240, frameheight: 320},
-            loader.getImage("UIContainerSprite")
+            loader.getImage("DialogBoxSprite")
         );
         this.addChild(texturemap.createSpriteFromName(
             [0],

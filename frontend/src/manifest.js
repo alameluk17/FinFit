@@ -128,7 +128,7 @@ const DataManifest = [
         src:  "./data/img/spritesheets/Parabellum_Retro_RPG_Characters_V3_Colour.png"
     },
     {
-        name: "UIContainerSprite",
+        name: "DialogBoxSprite",
         type: "image",
         src:  "./data/img/UIContainer.png"
     }
