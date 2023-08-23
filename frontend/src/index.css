@@ -39,3 +39,7 @@ body {
     background-image: url('./data/Assets/SpecialBuildings/BankBg.jpeg');
     background-position:50% 100%;
 }
+
+.login{
+    background-color: lightcoral;
+}

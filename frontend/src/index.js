@@ -68,6 +68,7 @@ device.onReady(() => {
 
         // Start the game.
         game.world.gravity = new Vector2d(0,0)
+        game.data = {}
         state.change(state.PLAY);
     });
 });
