@@ -10,7 +10,7 @@ from rest_framework import generics
 from rest_framework.permissions import AllowAny
 from .serializers import TransactionSerializer, UserSerializer, GroupSerializer, PlayerSerializer, RegisterEndpointSerializer,FixedDepositSerialiser,AssetSerializer
 from .models import FixedDeposit, Player, Transaction, Asset
-from .permissions import IsAdminOrReadOnly, IsPlayerDepositorOrAdmin, IsReadOnly, IsPlayerOwnerOrAdmin, AssetEndpointNonAdminPermissions
+from .permissions import IsAdminOrReadOnly, IsPlayerDepositorOrAdmin, IsReadOnly, IsPlayerOwnerOrAdmin, AssetEndpointNonAdminPermissions, IsPlayerOwnerOrAdminOnly
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -123,7 +123,7 @@ class FixedDepositViewSet(viewsets.ModelViewSet):
         elif self.action in ['update', 'partial_update','destroy']:
             permission_classes = [IsAdminOrReadOnly]
         elif self.action in ['create']:
-            permission_classes = [IsPlayerOwnerOrAdmin]
+            permission_classes = [IsPlayerOwnerOrAdminOnly]
         else:
             permission_classes = []
         permission_classes += [permissions.IsAuthenticated]
