@@ -5,7 +5,7 @@ from . import GAME_CONSTANTS
 
 class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,primary_key=True)
-    account_location = models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS,null=False)
+    account_location = models.CharField(max_length=3,choices = GAME_CONSTANTS.ACCOUNT_LOCATIONS,null=True)
     account_balance = models.FloatField(default=GAME_CONSTANTS.STARTING_ACCOUNT_BALANCE,null=False)
     wallet_balance = models.IntegerField(default=GAME_CONSTANTS.STARTING_WALLET_BALANCE,null=False)
     monthly_expenses = models.BigIntegerField(default=GAME_CONSTANTS.STARTING_MONTHLY_EXPENSES,null=False)
