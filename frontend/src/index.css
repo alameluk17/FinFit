@@ -24,19 +24,40 @@ body {
     display: block;
 }
 
+#formcontents{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: stretch;
+}
+
+#buttons{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#prettydiv{
+    background-color: black;
+    opacity: 0.5;
+}
+
 .hospital{
+    display: flex;
+    font-family: "Press Start 2P", serif;
+    color: rgb(17, 57, 50);
     background-size: cover;
-    background-image: url('./data/Assets/SpecialBuildings/BankBg.jpeg');
-    /* background-position:100%; */
-    width: 60%;
-    height: 70%;   
+    background-image: url('.\\data\\img\\background\\Hospital.png');
+    background-position:100%;
+    width: 45%;
+    height: 45%;   
     justify-content: center;
     align-items: center;
 }
 
 .bank{
     background-size: contain;
-    background-image: url('./data/Assets/SpecialBuildings/BankBg.jpeg');
+    background-image: url('.\\data\\img\\background\\Bank.png');
     background-position:50% 100%;
 }
 
