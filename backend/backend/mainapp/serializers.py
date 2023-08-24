@@ -71,7 +71,7 @@ class FixedDepositTypeSerialiser(serializers.ModelSerializer):
     class Meta:
         model = FixedDepositType
         fields = "__all__"
-        
+
 class FixedDepositSerialiser(serializers.ModelSerializer):
     current_user = serializers.SerializerMethodField('_user')
 
@@ -83,7 +83,8 @@ class FixedDepositSerialiser(serializers.ModelSerializer):
    
     class Meta:
         model = FixedDeposit
-        fields = ['principal','fixed_deposit_type','current_user']
+        fields = ['principal','fixed_deposit_type','current_user','owner']
+        read_only_fields = ['owner']
 
     def validate(self, attrs):
         validation_errors = {}

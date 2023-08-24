@@ -14,7 +14,7 @@ import {
 } from "melonjs";
 
 import "index.css";
-
+import { APIClient } from "./js/apirequests";
 import TitleScreen from "js/stage/title.js";
 import PlayScreen from "js/stage/play.js";
 import PlayerEntity from "js/renderables/player.js";

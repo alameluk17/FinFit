@@ -10,6 +10,22 @@ export class APIClient{
             "Content-Type": "application/json"
         }
     }
+    async recvUserDetails(){
+        let endpoint = this.endpoint+"/users/"
+        let response = await fetch(endpoint,{
+            method:"GET",
+            headers:this.headersList
+        })
+        response = await response.json()
+        for (let element of response){
+            if (element.username == this.username){
+                return element
+            }
+        }
+        return null
+        //return response
+
+    }
     async sendTransactionRequest(beneficiary,amount,purpose){
         let endpoint = this.endpoint+"/transaction"
         let benurl = this.endpoint+"/players"
@@ -77,5 +93,21 @@ export class APIClient{
             headers: this.headersList
           })
         return response
+    }
+    async recvUserDeposits(){
+        let endpoint = this.endpoint+"/deposits/"
+        let user = await this.recvUserDetails()
+        let response = await fetch(endpoint,{
+            method:"GET",
+            headers:this.headersList
+        })
+        response = await response.json()  
+        let retlist = []
+        for(let element of response ){
+            if (element.owner == user.id){
+                retlist.push(element)
+            }
+        }
+        return retlist
     }
 }
