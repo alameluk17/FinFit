@@ -24,7 +24,7 @@ body {
     display: block;
 }
 
-#formcontents{
+/*#formcontents{
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -35,24 +35,35 @@ body {
 #buttons{
     display: flex;
     justify-content: space-evenly;
+}*/
+
+dialog[open]{
+    display: flex;
+    justify-content: center;
+    font-family: "Press Start 2P", serif;
+    color: rgb(17, 57, 50);
 }
 
+
 #prettydiv{
-    background-color: black;
-    opacity: 0.5;
+    /*background-color: black;
+    opacity: 0.5;*/
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+    width: 100px;
+    height: 100px;
+    background-color: #ccc;
 }
 
 .hospital{
-    display: flex;
-    font-family: "Press Start 2P", serif;
-    color: rgb(17, 57, 50);
     background-size: cover;
     background-image: url('./data/img/background/Hospital.png');
     background-position:100%;
     width: 45%;
     height: 45%;   
-    justify-content: center;
-    align-items: center;
 }
 
 .bank{
