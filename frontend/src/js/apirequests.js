@@ -12,14 +12,14 @@ export class APIClient{
     }
     async sendTransactionRequest(beneficiary,amount,purpose){
         let endpoint = this.endpoint+"/transaction"
-        let benurl = this.endpoint+"/users"
+        let benurl = this.endpoint+"/players"
         switch (beneficiary) {
             case "policedepartment":
             case "policestation":
-                benurl+="/3"
+                benurl+="/3/"
                 break;
             case "governmentoffice":
-                benurl+="/4"
+                benurl+="/4/"
                 break;
             case "bakery":
             case "cafe":
@@ -33,29 +33,29 @@ export class APIClient{
             case "shop6":
             case "shop7":
             case "shop8":
-                benurl += "/10"
+                benurl += "/10/"
                 break;
             case "charity":
-                benurl+="/9"
+                benurl+="/9/"
                 break;
             case "publicbank":
-                benurl+="/8"
+                benurl+="/8/"
                 break;
             case "privatebank":
-                benurl+="/7"
+                benurl+="/7/"
                 break;
             case "postoffice":
-                benurl+="/6"
+                benurl+="/6/"
                 break;
             default:
                 break;
-            
-            let bodyContent = {beneficiary:benurl,amount:amount,purpose:purpose}
-            let response = fetch(endpoint, { 
-                method: "POST",
-                body: bodyContent,
-                headers: headersList
-              }) .then((data) => {console.log(data);});
         }
+        let bodyContent = {beneficiary:benurl,amount:amount,purpose:purpose}
+        let response = await fetch(endpoint, { 
+            method: "POST",
+            body: JSON.stringify(bodyContent),
+            headers: this.headersList
+          })
+        return response
     }
 }
