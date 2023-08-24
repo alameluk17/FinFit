@@ -41,7 +41,9 @@ dialog[open]{
     display: flex;
     justify-content: center;
     font-family: "Press Start 2P", serif;
-    color: rgb(17, 57, 50);
+    min-width: 35vw;
+    min-height: 35vh;
+    align-items: center;
 }
 
 
