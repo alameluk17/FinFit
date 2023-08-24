@@ -1,5 +1,5 @@
 import { Entity,input,collision,game} from "melonjs";
-
+import { APIClient } from "../apirequests";
 class BuildingEntity extends Entity{
 
     
@@ -23,9 +23,22 @@ class BuildingEntity extends Entity{
                 if (dialogbox.open){return false}
                 dialogbox.returnValue = {}
                 let formcontents = dialogbox.querySelector("#formcontents")
+
                 let submitbutton = dialogbox.querySelector("#submit");
+                let cancelbutton = dialogbox.querySelector("#cancel");
+
                 submitbutton.parentNode.replaceChild(submitbutton.cloneNode(true), submitbutton) // To clear any previous event handlers.
                 submitbutton = dialogbox.querySelector("#submit");
+                
+                cancelbutton.parentNode.replaceChild(cancelbutton.cloneNode(true), cancelbutton) // To clear any previous event handlers.
+                cancelbutton = dialogbox.querySelector("#cancel");
+                cancelbutton.addEventListener("click", (event) => {
+                    event.preventDefault(); // We don't want to submit this fake form
+                    formcontents.innerHTML = ""
+                    console.log("Hello World")
+                    dialogbox.close("exited")
+                }
+        );
                 switch (response.b.type) {
                     case "apartment1":
                         dialogbox.className="login"
@@ -37,22 +50,25 @@ class BuildingEntity extends Entity{
                         formcontents.innerHTML += '<label for="Password">Password :</label>'
                         formcontents.innerHTML += '<input id="Password" type="text" required=true name="password">'
                         formcontents.innerHTML += '<br>'
-                        formcontents.innerHTML += '<input id = "RegisterButton" type="checkbox">Register</input>'
+                        formcontents.innerHTML += '<button id = "RegisterButton" type="button">I need to Register!</button>'
                         formcontents.innerHTML += '<br>'
                         headersList.Authorization = `Basic ${btoa(username+":"+password)}`
                         let registerbutton = dialogbox.querySelector("#RegisterButton");
-                        registerbutton.addEventListener('change', (event) => {
-                            formcontents.innerHTML += '<label for="FirstName">First Name :</label>'
-                            formcontents.innerHTML += '<input id="FirstName" type="text" required=true name="firstname">'
-                            formcontents.innerHTML += '<br>'
-                            formcontents.innerHTML += '<label for="LastName">Last Name :</label>'
-                            formcontents.innerHTML += '<input id="LastName" type="text" required=true name="lastname">'
-                            formcontents.innerHTML += '<br>'
-                            formcontents.innerHTML += '<label for="Email">Email :</label>'
-                            formcontents.innerHTML += '<input id="Email" type="text" required=true name="email">'
-                            formcontents.innerHTML += '<br>'
-
-
+                        registerbutton.checked = false // registerbutton used to be a checkbox.
+                        // This and the first line of the event callback for registerbutton.click roughly emulate that.
+                        registerbutton.addEventListener('click', (event) => {
+                                registerbutton.checked = true
+                                formcontents = dialogbox.querySelector("#formcontents")
+                                formcontents.innerHTML += '<label for="FirstName">First Name :</label>'
+                                formcontents.innerHTML += '<input id="FirstName" type="text" required=true name="firstname">'
+                                formcontents.innerHTML += '<br>'
+                                formcontents.innerHTML += '<label for="LastName">Last Name :</label>'
+                                formcontents.innerHTML += '<input id="LastName" type="text" required=true name="lastname">'
+                                formcontents.innerHTML += '<br>'
+                                formcontents.innerHTML += '<label for="Email">Email :</label>'
+                                formcontents.innerHTML += '<input id="Email" type="text" required=true name="email">'
+                                formcontents.innerHTML += '<br>'
+                                registerbutton.checked = true
                         })
                         submitbutton.addEventListener("click", (event) => {
                             event.preventDefault(); // We don't want to submit this fake form
@@ -90,7 +106,7 @@ class BuildingEntity extends Entity{
                         formcontents.innerHTML += '<br><br>'
                         submitbutton.addEventListener("click", (event) => {
                             event.preventDefault(); // We don't want to submit this fake form
-                               let bodyContent = JSON.stringify(
+                            let bodyContent = JSON.stringify(
                                 {payDues:document.getElementById("payDues").value,payAmount:document.getElementById("payAmount").value}
                                );
                                let response = fetch("http://127.0.0.1:8000/", { 
