@@ -47,7 +47,7 @@ body {
     font-family: "Press Start 2P", serif;
     color: rgb(17, 57, 50);
     background-size: cover;
-    background-image: url('.\\data\\img\\background\\Hospital.png');
+    background-image: url('./data/img/background/Hospital.png');
     background-position:100%;
     width: 45%;
     height: 45%;   
@@ -57,7 +57,7 @@ body {
 
 .bank{
     background-size: contain;
-    background-image: url('.\\data\\img\\background\\Bank.png');
+    background-image: url('./data/img/background/Bank.png');
     background-position:50% 100%;
 }
 
