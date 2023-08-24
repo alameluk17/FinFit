@@ -79,11 +79,15 @@ class BuildingEntity extends Entity{
                         break;
 
                     case "hospital":
-                        formcontents.innerHTML = "<p> Welcome to the hospital! </p>"
+                        dialogbox.className="hospital"
+                        formcontents.innerHTML += "<p> Welcome to the hospital! </p>"
                         formcontents.innerHTML += '<label for="payDues">Pay Hospital Dues?</label>'
+                        formcontents.innerHTML += '<br>'
                         formcontents.innerHTML += '<select id="payDues" required=true name="payDuesopt"> <option>Yes</option> <option>No</option> </select></br>'
                         formcontents.innerHTML += '<label for="payAmount">Amount: </label>'
+                        formcontents.innerHTML += '<br>'
                         formcontents.innerHTML += '<input id="payAmount" type="number" required=true name="payAmount">'
+                        formcontents.innerHTML += '<br>'
                         submitbutton.addEventListener("click", (event) => {
                             event.preventDefault(); // We don't want to submit this fake form
                                let bodyContent = JSON.stringify(
