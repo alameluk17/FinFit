@@ -41,7 +41,7 @@ class BuildingEntity extends Entity{
         );
                 switch (response.b.type) {
                     case "apartment1":
-                        dialogbox.className="login"
+                        //dialogbox.className="login"
                         formcontents.innerHTML = "<h2>Login</h2>"
                         formcontents.innerHTML += '<label for="Username">Username :</label>'
                         formcontents.innerHTML += '<input id="Username" type="text" required=true name="username">'
@@ -49,9 +49,9 @@ class BuildingEntity extends Entity{
                         formcontents.innerHTML += '<br>'
                         formcontents.innerHTML += '<label for="Password">Password :</label>'
                         formcontents.innerHTML += '<input id="Password" type="text" required=true name="password">'
-                        formcontents.innerHTML += '<br>'
+                        formcontents.innerHTML += '<br><br>'
                         formcontents.innerHTML += '<button id = "RegisterButton" type="button">I need to Register!</button>'
-                        formcontents.innerHTML += '<br>'
+                        formcontents.innerHTML += '<br><br>'
                         headersList.Authorization = `Basic ${btoa(username+":"+password)}`
                         let registerbutton = dialogbox.querySelector("#RegisterButton");
                         registerbutton.checked = false // registerbutton used to be a checkbox.
@@ -61,13 +61,13 @@ class BuildingEntity extends Entity{
                                 formcontents = dialogbox.querySelector("#formcontents")
                                 formcontents.innerHTML += '<label for="FirstName">First Name :</label>'
                                 formcontents.innerHTML += '<input id="FirstName" type="text" required=true name="firstname">'
-                                formcontents.innerHTML += '<br>'
+                                formcontents.innerHTML += '<br><br>'
                                 formcontents.innerHTML += '<label for="LastName">Last Name :</label>'
                                 formcontents.innerHTML += '<input id="LastName" type="text" required=true name="lastname">'
-                                formcontents.innerHTML += '<br>'
+                                formcontents.innerHTML += '<br><br>'
                                 formcontents.innerHTML += '<label for="Email">Email :</label>'
                                 formcontents.innerHTML += '<input id="Email" type="text" required=true name="email">'
-                                formcontents.innerHTML += '<br>'
+                                formcontents.innerHTML += '<br><br>'
                                 registerbutton.checked = true
                         })
                         submitbutton.addEventListener("click", (event) => {
@@ -95,15 +95,14 @@ class BuildingEntity extends Entity{
                         break;
 
                     case "hospital":
-                        dialogbox.className="hospital"
-                        formcontents.innerHTML = "<p> Welcome to the hospital! </p>"
-                        formcontents.innerHTML += '<label for="payDues">Pay Hospital Dues?</label>'
+                        //dialogbox.className="hospital"
+                        formcontents.innerHTML = "<p> Salud! Welcome to the hospital! </p>"
                         formcontents.innerHTML += '<br><br>'
-                        formcontents.innerHTML += '<select id="payDues" required=true name="payDuesopt"> <option>Yes</option> <option>No</option> </select></br>'
-                        formcontents.innerHTML += '<label for="payAmount">Amount: </label>'
+                        formcontents.innerHTML += '<label for="payDues">You owe DolphDime Multispecialty Hospital: </label>'
                         formcontents.innerHTML += '<br><br>'
-                        formcontents.innerHTML += '<input id="payAmount" type="number" required=true name="payAmount">'
+                        formcontents.innerHTML += '<input id="payAmount" type="number" name="payAmount" value = "0" readonly>'
                         formcontents.innerHTML += '<br><br>'
+                        formcontents.innerHTML += '<p> Take care! </p>'
                         submitbutton.addEventListener("click", (event) => {
                             event.preventDefault(); // We don't want to submit this fake form
                             let bodyContent = JSON.stringify(
@@ -118,6 +117,80 @@ class BuildingEntity extends Entity{
                                 {payDues:document.getElementById("payDues").value,payAmount:document.getElementById("payAmount").value})
                             }
                         );
+                        break;
+                    
+                    case "policestation":
+                    case "policedepartment":
+                        //dialogbox.className="police"
+                        formcontents.innerHTML = "<p> DolphDime PD Welcomes You! </p>"
+                        formcontents.innerHTML += '<br><br>'
+                        formcontents.innerHTML += '<label for="payDues">You owe your city PD: </label>'
+                        formcontents.innerHTML += '<br><br>'
+                        formcontents.innerHTML += '<input id="payAmount" type="number" name="payAmount" value = "0" readonly>'
+                        formcontents.innerHTML += '<br><br>'
+                        formcontents.innerHTML += '<p> Always at your service! </p>'
+
+                        submitbutton.addEventListener("click", (event) => {
+                            event.preventDefault(); // We don't want to submit this fake form
+                            let bodyContent = JSON.stringify(
+                                {payDues:document.getElementById("payDues").value,payAmount:document.getElementById("payAmount").value}
+                               );
+                               let response = fetch("http://127.0.0.1:8000/", { 
+                                 method: "POST",
+                                 body: bodyContent,
+                                 headers: headersList
+                               }); // Untested!
+                            dialogbox.close(
+                                {payDues:document.getElementById("payDues").value,payAmount:document.getElementById("payAmount").value})
+                            }
+                        );
+                        break;
+                    
+                    case "postoffice":
+                    case "privatebank":
+                    case "publicbank":
+                        // if (response.b.type=="postoffice") dialogbox.className="PO"
+                        // else dialogbox.className="bank"
+                        formcontents.innerHTML = '<button id = "createAccount" type = "submit">Create Account</button>'
+                        formcontents.innerHTML += '<br><br>'
+                        formcontents.innerHTML += '<button id = "checkBalance" type = "submit">Check Bank Balance</button>'
+                        formcontents.innerHTML += '<br><br>'
+                        formcontents.innerHTML += '<button id = "createDeposits" type = "submit">Create Deposits</button>'
+                        formcontents.innerHTML += '<br><br>'
+                        formcontents.innerHTML += '<button id = "viewDeposits" type = "submit">View Deposits</button>'
+                        formcontents.innerHTML += '<br><br>'
+                        let createAccButton = dialogbox.querySelector("#createAccount");
+                        let checkBalButton = dialogbox.querySelector("#checkBalance");
+                        let createDepButtons = dialogbox.querySelector("#createDeposits");
+                        let viewDepButton = dialogbox.querySelector("#viewDeposits");
+                        createAccButton.addEventListener("click", (event) =>{
+                            event.preventDefault(); // We don't want to submit this fake form
+                            formcontents.innerHTML = "<p> No specific information to convey :)</p>"
+
+                        });     
+                        checkBalButton.addEventListener("click", (event)=>{
+                            event.preventDefault(); // We don't want to submit this fake form
+                            formcontents.innerHTML = "<p> No specific information to convey :)</p>"
+                        });
+                        createDepButtons.addEventListener("click", (event)=>{
+                            event.preventDefault(); // We don't want to submit this fake form
+                            formcontents.innerHTML = "<p> No specific information to convey :)</p>"
+                        });
+                        viewDepButton.addEventListener("click", (event)=>{
+                            event.preventDefault(); // We don't want to submit this fake form
+                            formcontents.innerHTML = "<p> No specific information to convey :)</p>"
+                        });
+
+                    break;
+
+                    case "governmentoffice":
+                        formcontents.innerHTML = '<button id = "createAndVerifyID" type = "submit">Create/ Verify Government ID</button>'
+                        formcontents.innerHTML += '<br><br>'
+                        let createAndVerifyIDButton = dialogbox.querySelector("#createAndVerifyID");
+                        createAndVerifyIDButton.addEventListener("click", (event) =>{
+                            event.preventDefault(); // We don't want to submit this fake form
+                            formcontents.innerHTML = "<p> No specific information to convey :)</p>"
+                        }); 
                         break;
                 
                     default:

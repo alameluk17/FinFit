@@ -17,7 +17,7 @@ body {
     /* Allow canvas to hit the edges of the browser viewport. */
     margin: 0;
 }
-
+  
 #screen canvas {
     margin: auto;
     /* Hide the gap for font descenders. */
@@ -37,19 +37,37 @@ body {
     justify-content: space-evenly;
 }*/
 
+
 dialog[open]{
     display: flex;
     justify-content: center;
     font-family: "Press Start 2P", serif;
-    min-width: 35vw;
-    min-height: 35vh;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    /*min-width: 35vw;
+    min-height: 35vh;*/
     align-items: center;
+    opacity: 0.8;
+    width: 45%;
+    height: 45%;  
+    background-color: black;
+
 }
 
+button{
+   background:transparent;
+   color: white; 
+   min-width: 5vw;
+   min-height: 5vh;
+   font-family:"Press Start 2P", serif;
+   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: black;
+}
 
-#prettydiv{
-    /*background-color: black;
-    opacity: 0.5;*/
+/*#prettydiv{
+    background-color: black;
+    opacity: 0.5;
     -webkit-filter: blur(5px);
     -moz-filter: blur(5px);
     -o-filter: blur(5px);
@@ -64,16 +82,26 @@ dialog[open]{
     background-size: cover;
     background-image: url('./data/img/background/Hospital.png');
     background-position:100%;
+    background-color:black;
+    opacity: 0.8;
     width: 45%;
     height: 45%;   
+}
+
+.police{
+    background-size: cover;
+    background-image: url('./data/img/background/Bank.png') ;
 }
 
 .bank{
     background-size: contain;
     background-image: url('./data/img/background/Bank.png');
     background-position:50% 100%;
+    background-position:100%;
+    width: 45%;
+    height: 45%; 
 }
 
 .login{
     background-color: lightcoral;
-}
+}*/
