@@ -2,7 +2,7 @@ from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
-from .models import FixedDeposit, Player, Transaction, Asset
+from .models import FixedDeposit, Player, Transaction, Asset, FixedDepositType
 from . import GAME_CONSTANTS
 
 
@@ -67,7 +67,11 @@ class TransactionSerializer(serializers.HyperlinkedModelSerializer):
         
 
         return transaction
-
+class FixedDepositTypeSerialiser(serializers.ModelSerializer):
+    class Meta:
+        model = FixedDepositType
+        fields = "__all__"
+        
 class FixedDepositSerialiser(serializers.ModelSerializer):
     current_user = serializers.SerializerMethodField('_user')
 

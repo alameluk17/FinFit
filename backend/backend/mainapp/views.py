@@ -8,8 +8,8 @@ from rest_framework.response import Response
 from rest_framework import permissions
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
-from .serializers import TransactionSerializer, UserSerializer, GroupSerializer, PlayerSerializer, RegisterEndpointSerializer,FixedDepositSerialiser,AssetSerializer
-from .models import FixedDeposit, Player, Transaction, Asset
+from .serializers import TransactionSerializer, UserSerializer, GroupSerializer, PlayerSerializer, RegisterEndpointSerializer,FixedDepositSerialiser,AssetSerializer, FixedDepositTypeSerialiser
+from .models import FixedDeposit, Player, Transaction, Asset, FixedDepositType
 from .permissions import IsAdminOrReadOnly, IsPlayerDepositorOrAdmin, IsReadOnly, IsPlayerOwnerOrAdmin, AssetEndpointNonAdminPermissions, IsPlayerOwnerOrAdminOnly
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -130,3 +130,10 @@ class FixedDepositViewSet(viewsets.ModelViewSet):
         return [permission() for permission in permission_classes]
     queryset = FixedDeposit.objects.all()
     serializer_class = FixedDepositSerialiser
+
+class DepositTypeViewSet(viewsets.ModelViewSet):
+    def get_permissions(self):
+        permission_classes = [IsReadOnly]
+        return [permission() for permission in permission_classes]
+    queryset = FixedDepositType.objects.all() 
+    serializer_class = FixedDepositTypeSerialiser

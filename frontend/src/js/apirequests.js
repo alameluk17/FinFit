@@ -58,8 +58,16 @@ export class APIClient{
           })
         return response
     }
-
-    async sendCreateDepositRequest(principal,fd_type){
+    async recvDepositTypeRequest(){
+        let endpoint = this.endpoint+"/fixeddeposittypes/"
+        let response = await fetch(endpoint,{
+            method:"GET",
+            headers:this.headersList
+        })
+        response = await response.json()
+        return response
+    }
+    async sendCreateDepositRequest(principal,fd_type,bank_loc){
         let endpoint = this.endpoint+"/deposits"
         let benurl = this.endpoint+"/players"
         let bodyContent = {principal:principal,fixed_deposit_type:fd_type}

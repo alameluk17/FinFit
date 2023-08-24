@@ -26,6 +26,7 @@ router.register(r'groups', views.GroupViewSet)
 router.register(r'players', views.PlayerViewSet)
 router.register(r'deposits',views.FixedDepositViewSet) #named deposits so we can implement recurring deposits in future.
 router.register(r'assets',views.AssetViewSet)
+router.register(r'fixeddeposittypes',views.DepositTypeViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
