@@ -99,7 +99,7 @@ class AssetViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'])
     def sale(self, request, pk=None):
         instance = self.get_object()
-        if "up_for_sale" in request.data and request.data['up_for_sale'] == 'true':
+        if "up_for_sale" in request.data and request.data['up_for_sale'] == True:
             up_for_sale = True
         else:
             up_for_sale = False

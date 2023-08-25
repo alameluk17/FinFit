@@ -129,6 +129,37 @@ export class APIClient{
 
     }
 
+    async recvAssets(){
+        let endpoint = this.endpoint+"/assets/"
+        let response = await fetch(endpoint,{
+            method:"GET",
+            headers:this.headersList
+        })
+        response = await response.json()
+        response = response.filter((x) => x.up_for_sale === true)
+        return response
+    }
+
+    async sendPurchaseAssetRequest(assetid){
+        let endpoint = this.endpoint+`/assets/${assetid}/purchase/`
+        let response = await fetch(endpoint,{
+            method:"POST",
+            headers:this.headersList
+        })
+        response = await response.json()
+        return response
+    }
+    async sendSaleAssetRequest(assetid,for_sale){
+        let bodyContent = {up_for_sale : for_sale}
+        let endpoint = this.endpoint+`/assets/${assetid}/sale/`
+        let response = await fetch(endpoint,{
+            method:"POST",
+            body: JSON.stringify(bodyContent),
+            headers:this.headersList
+        })
+        response = await response.json()
+        return response
+    }
     async sendSetGovernmentIDRequest(){
         let player = await this.recvPlayerDetails()
         if (player.government_id !== ""){

@@ -69,11 +69,21 @@ device.onReady(() => {
         // Start the game.
         game.world.gravity = new Vector2d(0,0)
         game.data = {}
-        // game.data.apiclient = new APIClient("admin","finfit")
+        game.data.apiclient = new APIClient("Police_Station","PSfinfit")
         // game.data.apiclient = new APIClient("test","finfit@123")
-        // game.data.apiclient.sendSetGovernmentIDRequest().then(
-        //     async (value) => {console.log(value)}
-        // )
+        game.data.apiclient.recvAssets().then(
+            async (value) => {
+                console.log(value)
+                game.data.apiclient.sendPurchaseAssetRequest(1).then(
+                    async (value) => {console.log(value)
+                        game.data.apiclient.sendSaleAssetRequest(1,true).then(
+                            async (value) => {console.log(value)}
+                        )
+                    }
+                )
+            }
+        )
+        console.log(game.data.apiclient.gender)
         state.change(state.PLAY);
     });
 });
