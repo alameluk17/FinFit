@@ -69,6 +69,11 @@ device.onReady(() => {
         // Start the game.
         game.world.gravity = new Vector2d(0,0)
         game.data = {}
+        game.data.apiclient = new APIClient("admin","finfit")
+        // game.data.apiclient.createBankAccount("PRB").then(
+        //     async (value) => {console.log(value)}
+        // )
+        // a.sendSetGovernmentIDRequest()
         state.change(state.PLAY);
     });
 });
