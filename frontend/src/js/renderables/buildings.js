@@ -1,9 +1,6 @@
 import { Entity,input,collision,game} from "melonjs";
 import { APIClient } from "../apirequests";
 
-let table = document.createElement("table");
-table.setAttribute("id", "table")
-
 
 class BuildingEntity extends Entity{
 
@@ -189,16 +186,55 @@ class BuildingEntity extends Entity{
 
                         createAccButton.addEventListener("click", (event) =>{
                             event.preventDefault(); // We don't want to submit this fake form
-                            formcontents.innerHTML = "<p> No specific information to convey :)</p>"
+                            let createAccDetails = {}
+                            let current_location = ""
+                            if (game.data.CURRENT_COLLISION == "privatebank") current_location="PRB"
+                            else if (game.data.CURRENT_COLLISION == "publicbank") current_location="PBB"
+                            else current_location="PO"
+                            game.data.apiclient.createBankAccount(current_location).then(
+                                async(createAccDets) => {
+                                createAccDetails = createAccDets;
+                                console.log(createAccDetails)
 
-                        });     
+                                if(Object.hasOwn(createAccDetails, 'error')){
+                                    formcontents.innerHTML = `<p>${createAccDetails["error"]}</p>`
+                                }
+                                else{
+                                    formcontents.innerHTML = '<p>Account Creation Successful!</p>'
+                                }
+                                formcontents.innerHTML += '<br><br>'
+                        }); 
+                    }); 
                         checkBalButton.addEventListener("click", (event)=>{
                             event.preventDefault(); // We don't want to submit this fake form
-                            formcontents.innerHTML = "<p> No specific information to convey :)</p>"
+                            let playerDetails = {}
+                                game.data.apiclient.recvPlayerDetails().then(
+                                    async(playerDets) => {
+                                playerDetails = playerDets;
+                                console.log(playerDetails)
+                                let current_location=""
+                                if (game.data.CURRENT_COLLISION == "privatebank") current_location="PRB"
+                                else if (game.data.CURRENT_COLLISION == "publicbank") current_location="PBB"
+                                else current_location="PO"
+                                if (playerDetails.account_location==current_location){
+                                    formcontents.innerHTML = '<p>Your Account Balance: </p>'
+                                    formcontents.innerHTML += '<br><br>'
+                                    formcontents.innerHTML += `<input id="accBal" type="number" name="accBal" value=${playerDetails.account_balance} readonly>`
+                                    formcontents.innerHTML += '<br><br>'
+                                }
+                                else {
+                                    formcontents.innerHTML = '<p>You do not have an account here! Go back to create one!</p>'
+                                    formcontents.innerHTML += '<br><br>'
+                                }
+                                    });
+                            
                         });
                         createDepButtons.addEventListener("click", (event)=>{
                             event.preventDefault(); // We don't want to submit this fake form
                             formcontents.innerHTML = ""
+
+                            let table = document.createElement("table");
+                            table.setAttribute("id", "table")
                           
                             let deposits =[]
                             game.data.apiclient.recvDepositTypeRequest().then(
@@ -215,19 +251,11 @@ class BuildingEntity extends Entity{
                                 let thead = table.createTHead();
                                 let row = thead.insertRow();
                                 for (let key of Object.keys(resultDep[0])) {
-                                // let th = document.createElement("th");
-                                // let text = document.createTextNode(key);
                                 if (key=="id" || key=="scheme_name" || key=="interest_rate" || key=="term" || key=="estimate"){
                                     let th = document.createElement("th");
                                     if (key=="interest_rate") key+=" (%)"
                                     if (key=="term") key+=" (in months)"
                                     let text = document.createTextNode(key);
-                                    // if (key=="interest_rate"){
-                                    //     text += " (%)"
-                                    // }
-                                    // else if (key=="term"){
-                                    //     text += " (in months)"
-                                    // }
                                     th.appendChild(text);
                                     row.appendChild(th);
                                     
@@ -293,7 +321,80 @@ class BuildingEntity extends Entity{
                         });
                         viewDepButton.addEventListener("click", (event)=>{
                             event.preventDefault(); // We don't want to submit this fake form
-                            formcontents.innerHTML = "<p> No specific information to convey :)</p>"
+                            let current_location = ""
+
+                            let table = document.createElement("table");
+                            table.setAttribute("id", "table")
+
+                            if (game.data.CURRENT_COLLISION == "privatebank") current_location="PRB"
+                            else if (game.data.CURRENT_COLLISION == "publicbank") current_location="PBB"
+                            else current_location="PO"
+                            let deposits = []
+                                game.data.apiclient.recvUserDeposits().then(
+                                    async(dep) => {
+                                deposits = dep;
+                                console.log(deposits)
+                                formcontents.innerHTML = ""
+                                if(deposits.length == 0) formcontents.innerHTML = '<p>You do not have any deposits yet! Create one! </p>'
+                                else{
+                                    let depositTypes =[]
+                                    game.data.apiclient.recvDepositTypeRequest().then(
+                                        async(depTypes) => {
+                                            depositTypes = depTypes;
+                                            console.log(depositTypes)
+                                            let UserDeposits = []
+                                            for(let userElement of deposits){
+                                                for(let element of depositTypes){
+                                                    if (userElement.fixed_deposit_type==element.id){
+                                                        if(element.location==current_location){
+                                                            let resElement ={}
+                                                            resElement.id = element.id
+                                                            resElement.scheme_name = element.scheme_name
+                                                            resElement.interest_rate = element.interest_rate
+                                                            resElement.term = element.term
+                                                            resElement.principal = userElement.principal
+                                                            UserDeposits.push(resElement)
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            if (UserDeposits.length!=0){
+                                                let thead = table.createTHead();
+                                                let row = thead.insertRow();
+                                                for (let key of Object.keys(UserDeposits[0])) {
+                                                if (key=="id" || key=="scheme_name" || key=="interest_rate" || key=="term" || key=="principal"){
+                                                    let th = document.createElement("th");
+                                                    if (key=="interest_rate") key+=" (%)"
+                                                    if (key=="term") key+=" (in months)"
+                                                    let text = document.createTextNode(key);
+                                                    th.appendChild(text);
+                                                    row.appendChild(th);
+                                                    
+                                                }
+                                                }
+                
+                                                for (let element of UserDeposits) {
+                                                    let row = table.insertRow();
+                                                    let retParams = ["id", "scheme_name","term", "interest_rate", "principal"]
+                                                    for (let key of retParams) {
+                                                        let cell = row.insertCell();
+                                                        let text = document.createTextNode(element[key]);
+                                                        cell.appendChild(text);
+                                                    }
+                                                    }
+                                                
+                                                formcontents.appendChild(table)
+                                                formcontents.innerHTML += '<br><br>'
+                                            }
+                                            else{
+                                                formcontents.innerHTML = '<p>You have not made any deposits in this bank! Maybe you do in another!</p>'
+                                                formcontents.innerHTML += '<br><br>'
+                                            }
+                                        
+                                    });
+                                }
+                                });
+
                         });
                         
 
@@ -305,7 +406,17 @@ class BuildingEntity extends Entity{
                         let createAndVerifyIDButton = dialogbox.querySelector("#createAndVerifyID");
                         createAndVerifyIDButton.addEventListener("click", (event) =>{
                             event.preventDefault(); // We don't want to submit this fake form
-                            formcontents.innerHTML = "<p> No specific information to convey :)</p>"
+                            formcontents.innerHTML = ""
+                            let playerDetails = {}
+                            game.data.apiclient.sendSetGovernmentIDRequest().then(
+                                async(dets) => {
+                            playerDetails = dets;
+                            console.log(playerDetails)
+                            formcontents.innerHTML = `<p>Your Government ID: ${playerDetails.government_id}</p>`
+                            formcontents.innerHTML += '<br><br>'
+
+                                });
+
                         }); 
                         break;
                 
