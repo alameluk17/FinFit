@@ -69,7 +69,7 @@ device.onReady(() => {
         // Start the game.
         game.world.gravity = new Vector2d(0,0)
         game.data = {}
-        game.data.apiclient = new APIClient("Police_Station","PSfinfit")
+        game.data.apiclient = new APIClient("admin","finfit")
         // game.data.apiclient = new APIClient("test","finfit@123")
         game.data.apiclient.recvAssets().then(
             async (value) => {

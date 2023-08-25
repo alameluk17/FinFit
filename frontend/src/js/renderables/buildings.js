@@ -1,5 +1,10 @@
 import { Entity,input,collision,game} from "melonjs";
 import { APIClient } from "../apirequests";
+
+let table = document.createElement("table");
+table.setAttribute("id", "table")
+
+
 class BuildingEntity extends Entity{
 
     
@@ -9,6 +14,25 @@ class BuildingEntity extends Entity{
             this.body.setFriction(0, 0);
             this.body.collisionType = collision.types.ACTION_OBJECT;
         }
+
+        calculateEstimates(){
+            let principal = parseFloat(document.getElementById("principal").value);
+            let table = document.getElementById("table");
+            let rows = table.rows;
+        
+            for (let i = 1; i < rows.length; i++) {
+                let interest_rate = parseFloat(rows[i].cells[3].innerText) / 100;
+                let term = parseFloat(rows[i].cells[2].innerText) / 12;
+                
+                // Calculate compound interest
+                let A = principal * Math.pow((1 + interest_rate), term);
+        
+                rows[i].cells[4].innerText = A.toFixed(2); // Updating the estimate column
+            }
+        }
+
+
+
         onCollision(response, other) {
             let username="admin"
             let password="finfit"
@@ -149,8 +173,7 @@ class BuildingEntity extends Entity{
                     case "postoffice":
                     case "privatebank":
                     case "publicbank":
-                        // if (response.b.type=="postoffice") dialogbox.className="PO"
-                        // else dialogbox.className="bank"
+                        game.data.CURRENT_COLLISION = response.b.type
                         formcontents.innerHTML = '<button id = "createAccount" type = "submit">Create Account</button>'
                         formcontents.innerHTML += '<br><br>'
                         formcontents.innerHTML += '<button id = "checkBalance" type = "submit">Check Bank Balance</button>'
@@ -163,6 +186,7 @@ class BuildingEntity extends Entity{
                         let checkBalButton = dialogbox.querySelector("#checkBalance");
                         let createDepButtons = dialogbox.querySelector("#createDeposits");
                         let viewDepButton = dialogbox.querySelector("#viewDeposits");
+
                         createAccButton.addEventListener("click", (event) =>{
                             event.preventDefault(); // We don't want to submit this fake form
                             formcontents.innerHTML = "<p> No specific information to convey :)</p>"
@@ -174,12 +198,104 @@ class BuildingEntity extends Entity{
                         });
                         createDepButtons.addEventListener("click", (event)=>{
                             event.preventDefault(); // We don't want to submit this fake form
-                            formcontents.innerHTML = "<p> No specific information to convey :)</p>"
+                            formcontents.innerHTML = ""
+                          
+                            let deposits =[]
+                            game.data.apiclient.recvDepositTypeRequest().then(
+                                async(dep) => {
+                                    deposits=dep;
+                                    let resultDep = []
+                                for(let element of deposits){
+                                    element.estimate=0
+                                    if (element.location == "PBB" && game.data.CURRENT_COLLISION == "publicbank" && element.scheme_name != "Public Provident Fund") resultDep.push(element)
+                                    if (element.location == "PRB" && game.data.CURRENT_COLLISION == "privatebank" && element.scheme_name != "Public Provident Fund") resultDep.push(element)
+                                    if (element.location == "PO" && game.data.CURRENT_COLLISION == "postoffice") resultDep.push(element)
+                                }
+
+                                let thead = table.createTHead();
+                                let row = thead.insertRow();
+                                for (let key of Object.keys(resultDep[0])) {
+                                // let th = document.createElement("th");
+                                // let text = document.createTextNode(key);
+                                if (key=="id" || key=="scheme_name" || key=="interest_rate" || key=="term" || key=="estimate"){
+                                    let th = document.createElement("th");
+                                    if (key=="interest_rate") key+=" (%)"
+                                    if (key=="term") key+=" (in months)"
+                                    let text = document.createTextNode(key);
+                                    // if (key=="interest_rate"){
+                                    //     text += " (%)"
+                                    // }
+                                    // else if (key=="term"){
+                                    //     text += " (in months)"
+                                    // }
+                                    th.appendChild(text);
+                                    row.appendChild(th);
+                                    
+                                }
+                                }
+
+                                for (let element of resultDep) {
+                                    let row = table.insertRow();
+                                    let retParams = ["id", "scheme_name","term", "interest_rate", "estimate"]
+                                    for (let key of retParams) {
+                                        let cell = row.insertCell();
+                                        let text = document.createTextNode(element[key]);
+                                        cell.appendChild(text);
+                                    }
+                                    }
+                                
+                                formcontents.appendChild(table)
+                                formcontents.innerHTML += '<br><br>'
+                                let playerDetails = {}
+                                game.data.apiclient.recvPlayerDetails().then(
+                                    async(playerDets) => {
+                                playerDetails = playerDets;
+                                console.log(playerDetails)
+                                formcontents.innerHTML += '<label for="pricipalAmount">Principal</label>'
+                                formcontents.innerHTML += '<br><br>'
+                                if(game.data.CURRENT_COLLISION=="postoffice"){
+                                    if(playerDetails.gender=="F"){
+                                        formcontents.innerHTML += '<input id="principal" type="number" name="principal">'
+                                        formcontents.innerHTML += '<br><br>'
+                                        formcontents.innerHTML += '<label for ="DepType">Deposit Type</label>'
+                                        formcontents.innerHTML += '<br><br>'
+                                        formcontents.innerHTML += '<input id="depID" type="number" name="depID">'
+                                        formcontents.innerHTML += '<br><br>'
+
+                                        const inputElement = document.getElementById("principal");
+                                        inputElement.addEventListener('input', this.calculateEstimates)
+                                    }
+                                    else{
+                                        formcontents.innerHTML += '<input id="principal" type="number" name="principal" readonly>'
+                                        formcontents.innerHTML += '<br><br>'
+                                        formcontents.innerHTML += '<label for ="DepType">Deposit Type</label>'
+                                        formcontents.innerHTML += '<br><br>'
+                                        formcontents.innerHTML += '<input id="depID" type="number" name="depID" readonly>'
+                                        formcontents.innerHTML += '<br><br>'
+                                        formcontents.innerHTML += '<p> Mahila Samman Savings Scheme cannot be availed by you!! </p>'
+                                    }
+                                }
+                                else{
+                                    formcontents.innerHTML += '<input id="principal" type="number" name="principal">'
+                                    formcontents.innerHTML += '<br><br>'
+                                    formcontents.innerHTML += '<label for ="DepType">Deposit Type</label>'
+                                    formcontents.innerHTML += '<br><br>'
+                                    formcontents.innerHTML += '<input id="depID" type="number" name="depID">'
+                                    formcontents.innerHTML += '<br><br>'
+
+                                    const inputElement = document.getElementById("principal");
+                                    inputElement.addEventListener('input', this.calculateEstimates)
+                                }
+                                });
+                            }
+                            )
+                            
                         });
                         viewDepButton.addEventListener("click", (event)=>{
                             event.preventDefault(); // We don't want to submit this fake form
                             formcontents.innerHTML = "<p> No specific information to convey :)</p>"
                         });
+                        
 
                     break;
 
@@ -204,6 +320,9 @@ class BuildingEntity extends Entity{
             }
             return false
         }
+
+        
+        
     }
 
 export default BuildingEntity;

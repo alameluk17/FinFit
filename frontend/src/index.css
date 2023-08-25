@@ -37,6 +37,21 @@ body {
     justify-content: space-evenly;
 }*/
 
+.bank{
+    display: flex;
+    justify-content: center;
+    font-family: "Press Start 2P", serif;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    min-width: 70vw;
+    min-height: 70vh;
+    align-items: center;
+    opacity: 0.8;
+    width: 45%;
+    height: 45%;  
+    background-color: black; 
+}
 
 dialog[open]{
     display: flex;
@@ -45,8 +60,8 @@ dialog[open]{
     color: white;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
-    /*min-width: 35vw;
-    min-height: 35vh;*/
+    min-width: 75vw;
+    min-height: 75vh;
     align-items: center;
     opacity: 0.8;
     width: 45%;
@@ -64,6 +79,8 @@ button{
    -webkit-text-stroke-width: 1px;
    -webkit-text-stroke-color: black;
 }
+
+
 
 /*#prettydiv{
     background-color: black;
@@ -105,3 +122,18 @@ button{
 .login{
     background-color: lightcoral;
 }*/
+
+
+table {
+    border-collapse: collapse;
+    /*width: 100%;*/
+}
+
+table, th, td {
+    border: 1px solid white;
+}
+
+th, td {
+    padding: 4px; /* Optional, for some spacing inside cells */
+    text-align: left; /* Optional, to align text */
+}
