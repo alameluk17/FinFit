@@ -131,6 +131,15 @@ const DataManifest = [
         name: "DialogBoxSprite",
         type: "image",
         src:  "./data/img/UIContainer.png"
+    },
+    {
+        name: "#", // Melon seems to append the name of the asset+".mp3" when playing assets.
+        // something like /bgm/BlipStreamshort.mp3givenname.mp3
+        // naming the name "#" will result in the url /bgm/BlipStreamshort.mp3#.mp3
+        // so the actual url ends up being something that resolves to the proper file.
+        channel:2,
+        type: "audio",
+        src:  "./data/bgm/BlipStreamshort.mp3"
     }
 ];
 
