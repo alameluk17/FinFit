@@ -59,6 +59,12 @@ class PlayerEntity extends Entity {
         if(input.isKeyPressed("fraud")){
             const dialogbox = document.getElementById("userdialog")
             if (!dialogbox.open){
+                formcontents.innerHTML ='<h3>A friend reaches out to you!</h3>'
+                formcontents.innerHTML +='<p>Apparently he\'s been investing in real estate and has a killer offer for you!</p>'
+                formcontents.innerHTML +='<p>He says that if you give him a periodic investment of 20,000 Dolcoins per month for 7 months, he\'ll buy you a piece of prime real estate near New Bark.</p>'
+                formcontents.innerHTML +='<p>You spoke to your father and he says the plot would have been worth around 900,000 dolcoins.</p>'
+                formcontents.innerHTML +='<p>Do you take your dear friend up on his offer?</p>'
+
                 dialogbox.showModal();
             }
         }
@@ -66,6 +72,9 @@ class PlayerEntity extends Entity {
         if(input.isKeyPressed("emergency")){
             const dialogbox = document.getElementById("userdialog")
             if (!dialogbox.open){
+                formcontents.innerHTML = '<h3>EMERGENCY!</h3>'
+                formcontents.innerHTML += '<br><br'
+                formcontents.innerHTML += 'Pay Hospital Dues : 5000 dolcoins'
                 dialogbox.showModal();
             }
         }
