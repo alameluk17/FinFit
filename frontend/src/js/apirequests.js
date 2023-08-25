@@ -110,4 +110,60 @@ export class APIClient{
         }
         return retlist
     }
+
+    async recvPlayerDetails(){
+        let endpoint = this.endpoint+"/players/"
+        let user = await this.recvUserDetails() 
+        let userurl = this.endpoint+"/users/"+user.id+"/"
+        let response = await fetch(endpoint,{
+            method:"GET",
+            headers:this.headersList
+        })
+        response = await response.json()
+        console.log(response)
+        for (let element of response){
+            if (element.user == userurl){
+                return element
+            }
+        }
+        return null
+
+    }
+
+    async createBankAccount(bank_location){
+        let endpoint = this.endpoint+"/deposits/"
+        let player = await this.recvPlayerDetails()
+        console.log(player.account_location)
+        
+        if(player.account_location == null && player.government_id==""){
+            // create government id and then bank acc
+            return -1
+        }
+        else if(player.account_location == null){
+            console.log("hello world")
+            //create account
+            // player.account_location = bank_location
+            // return 1
+            const myArray = player.user.split("/");
+            user_id = myArray[myArray.length -2]
+
+            //let endpoint = this.endpoint+"/players/"+user_id+"/"
+            let endpoint = this.endpoint+"/players/"+11+"/"
+            
+            //let benurl = this.endpoint+"/players"
+            let bodyContent = {account_location: bank_location}
+            let response = await fetch(endpoint, { 
+            method: "POST",
+            body: JSON.stringify(bodyContent),
+            headers: this.headersList
+          })
+        console.log(response)
+        return response
+        }
+        else{
+            //cannot create acc since acc already exists
+            console.log("cannot create acc since acc already exists")
+            return 0
+        }
+    }
 }
