@@ -95,7 +95,7 @@ class BuildingEntity extends Entity{
                             event.preventDefault(); // We don't want to submit this fake form
                             game.data.username = document.getElementById("Username").value
                             game.data.password = document.getElementById("Password").value
-
+                            game.data.apiclient = new APIClient(game.data.username,game.data.password)
                             if (registerbutton.checked == true){
                                 let email = document.getElementById("Email").value
                                 let fname = document.getElementById("FirstName").value
@@ -419,7 +419,20 @@ class BuildingEntity extends Entity{
 
                         }); 
                         break;
-                
+
+                    case "plot1":
+                    case "plot2":
+                    case "plot3":
+                    case "plot4":
+                        formcontents.innerHTML = '<h1>Plot: 1</h1>'
+                        formcontents.innerHTML += '<p>Price: 20,000 DC</p>'
+                        formcontents.innerHTML += '<p>Purchase?</p>'
+                        break;
+                    case "plot10":
+                        formcontents.innerHTML = '<h1>Plot: 2</h1>'
+                        formcontents.innerHTML += '<p>Price: 1,20,000 DC</p>'
+                        formcontents.innerHTML += '<p>Purchase?</p>'
+                        break;
                     default:
                         formcontents.innerHTML = "<p> No specific information to convey :)</p>"
                         // dialogbox.querySelector()
