@@ -37,6 +37,7 @@ class PlayerEntity extends Entity {
      * update the entity
      */
     update(dt) {
+        const dialogbox = document.getElementById("userdialog")
         if(this.body.vel.x===0 && this.body.vel.y===0){
             switch (this.facingdirection) {
                 case "left":
@@ -72,6 +73,69 @@ class PlayerEntity extends Entity {
         if(input.isKeyPressed("info")){
             const dialogbox = document.getElementById("userdialog")
             if (!dialogbox.open){
+                game.data.apiclient.recvPlayerDetails().then(
+                    async (player) => {
+                        let formcontents = dialogbox.querySelector("#formcontents")
+                        let submitbutton = dialogbox.querySelector("#submit");
+                    let cancelbutton = dialogbox.querySelector("#cancel");
+    
+                    submitbutton.parentNode.replaceChild(submitbutton.cloneNode(true), submitbutton) // To clear any previous event handlers.
+                    submitbutton = dialogbox.querySelector("#submit");
+                    
+                    cancelbutton.parentNode.replaceChild(cancelbutton.cloneNode(true), cancelbutton) // To clear any previous event handlers.
+                    cancelbutton = dialogbox.querySelector("#cancel");
+                    cancelbutton.addEventListener("click", (event) => {
+                        event.preventDefault(); // We don't want to submit this fake form
+                        formcontents.innerHTML = ""
+                        console.log("Hello World")
+                        dialogbox.close("exited")
+                    })
+                    submitbutton.addEventListener("click", (event) => {
+                        event.preventDefault(); // We don't want to submit this fake form
+                        formcontents.innerHTML = ""
+                        console.log("Hello World")
+                        dialogbox.close("exited")
+                    })
+                        let loc = "";
+                        if (player.account_location=="PRB"){
+                            loc = "Private Bank"
+                        }
+                        else if (player.account_location=="PBB"){
+                            loc = "Public Bank"
+                        }
+                        else if (player.account_location=="PO"){
+                            loc = "Post Office"
+                        }
+    
+                        formcontents.innerHTML = "<h1>Player Details:</h1>"
+                        formcontents.innerHTML += 
+                        `<div>
+                            Wallet Balance: ${player.wallet_balance} dolcoins
+                        </div>
+                        <br>
+                        <div>
+                            Account Balance: ${player.account_balance}
+                        </div>
+                        <br>
+                        <div>
+                            Account Location: ${loc}
+                        </div>
+                        <br>
+                        <div>
+                           Government ID: ${player.government_id}
+                        </div>
+                        <br>
+                        <div>
+                           Expenses(monthly): ${player.monthly_expenses} dolcoins
+                        </div>
+                        <br>
+                        <div>
+                            Salary(monthly): ${player.monthly_salary} dolcoins
+                        </div>
+                        `
+                        
+                    }
+                )
                 dialogbox.showModal();
             }
         }
