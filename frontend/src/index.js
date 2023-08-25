@@ -65,24 +65,26 @@ device.onReady(() => {
         input.bindKey(input.KEY.UP,     "up");
         input.bindKey(input.KEY.DOWN,     "down");
         input.bindKey(input.KEY.SPACE,  "action", true);
-
+        input.bindKey(input.KEY.F,  "fraud");
+        input.bindKey(input.KEY.E,  "emergency");
+        input.bindKey(input.KEY.I,  "info");
         // Start the game.
         game.world.gravity = new Vector2d(0,0)
         game.data = {}
         game.data.apiclient = new APIClient("admin","finfit")
         // game.data.apiclient = new APIClient("test","finfit@123")
-        game.data.apiclient.recvAssets().then(
-            async (value) => {
-                console.log(value)
-                game.data.apiclient.sendPurchaseAssetRequest(1).then(
-                    async (value) => {console.log(value)
-                        game.data.apiclient.sendSaleAssetRequest(1,true).then(
-                            async (value) => {console.log(value)}
-                        )
-                    }
-                )
-            }
-        )
+        // game.data.apiclient.recvAssets().then(
+        //     async (value) => {
+        //         console.log(value)
+        //         game.data.apiclient.sendPurchaseAssetRequest(1).then(
+        //             async (value) => {console.log(value)
+        //                 game.data.apiclient.sendSaleAssetRequest(1,true).then(
+        //                     async (value) => {console.log(value)}
+        //                 )
+        //             }
+        //         )
+        //     }
+        // )
         console.log(game.data.apiclient.gender)
         state.change(state.PLAY);
     });

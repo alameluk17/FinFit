@@ -55,6 +55,27 @@ class PlayerEntity extends Entity {
             }
         }
 
+        if(input.isKeyPressed("fraud")){
+            const dialogbox = document.getElementById("userdialog")
+            if (!dialogbox.open){
+                dialogbox.showModal();
+            }
+        }
+
+        if(input.isKeyPressed("emergency")){
+            const dialogbox = document.getElementById("userdialog")
+            if (!dialogbox.open){
+                dialogbox.showModal();
+            }
+        }
+
+        if(input.isKeyPressed("info")){
+            const dialogbox = document.getElementById("userdialog")
+            if (!dialogbox.open){
+                dialogbox.showModal();
+            }
+        }
+
         if (!document.getElementById("userdialog").open){
             if (input.isKeyPressed("left")) {
                 this.facingdirection = "left"
