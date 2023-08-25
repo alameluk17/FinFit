@@ -22,7 +22,7 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.HyperlinkedRelatedField(view_name='user-detail',queryset=User.objects.all())
     class Meta:
         model = Player
-        fields = ['user','gender','wallet_balance','account_location','account_balance','monthly_expenses','monthly_salary','government_id','net_worth','kindness_index','happiness_index']
+        fields = ['user',"url",'gender','wallet_balance','account_location','account_balance','monthly_expenses','monthly_salary','government_id','net_worth','kindness_index','happiness_index']
 
 class TransactionSerializer(serializers.HyperlinkedModelSerializer):
     # We reiterate what a user is once more here so that drf knows what to hyperlink (I think)

@@ -120,7 +120,6 @@ export class APIClient{
             headers:this.headersList
         })
         response = await response.json()
-        console.log(response)
         for (let element of response){
             if (element.user == userurl){
                 return element
@@ -130,40 +129,43 @@ export class APIClient{
 
     }
 
+    async sendSetGovernmentIDRequest(){
+        let player = await this.recvPlayerDetails()
+        if (player.government_id !== ""){
+            return player
+        }
+        let govt_id = player.url.split("/")
+        govt_id = govt_id[govt_id.length -2]
+        govt_id = govt_id.padStart(12,'0')
+        let endpoint = player.url
+        let bodyContent = {government_id:govt_id, user:player.user}
+        let response = await fetch(endpoint, { 
+            method: "PUT",
+            body: JSON.stringify(bodyContent),
+            headers: this.headersList
+          })
+        return await response.json()
+    }
+
     async createBankAccount(bank_location){
         let endpoint = this.endpoint+"/deposits/"
         let player = await this.recvPlayerDetails()
         console.log(player.account_location)
         
         if(player.account_location == null && player.government_id==""){
-            // create government id and then bank acc
-            return -1
+           return {"error":"You must create a government ID before you can create a bank account!"}
         }
         else if(player.account_location == null){
-            console.log("hello world")
-            //create account
-            // player.account_location = bank_location
-            // return 1
-            const myArray = player.user.split("/");
-            user_id = myArray[myArray.length -2]
-
-            //let endpoint = this.endpoint+"/players/"+user_id+"/"
-            let endpoint = this.endpoint+"/players/"+11+"/"
-            
-            //let benurl = this.endpoint+"/players"
-            let bodyContent = {account_location: bank_location}
+            let endpoint = player.url
+            let bodyContent = {user:player.user,account_location: bank_location,government_id:player.government_id}
             let response = await fetch(endpoint, { 
-            method: "POST",
+            method: "PUT",
             body: JSON.stringify(bodyContent),
-            headers: this.headersList
-          })
-        console.log(response)
-        return response
+            headers: this.headersList})
+            return response
         }
         else{
-            //cannot create acc since acc already exists
-            console.log("cannot create acc since acc already exists")
-            return 0
+            return {"error":"You already have a bank account! (It might not be at this bank though!)"}
         }
     }
 }
