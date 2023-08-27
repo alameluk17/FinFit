@@ -179,10 +179,13 @@ class BuildingEntity extends Entity{
                         formcontents.innerHTML += '<br><br>'
                         formcontents.innerHTML += '<button id = "viewDeposits" type = "submit">View Deposits</button>'
                         formcontents.innerHTML += '<br><br>'
+                        // formcontents.innerHTML += '<button id = "withdrawDolCoins" type = "submit">Withdraw DolCoins</button>'
+                        // formcontents.innerHTML += '<br><br>'
                         let createAccButton = dialogbox.querySelector("#createAccount");
                         let checkBalButton = dialogbox.querySelector("#checkBalance");
                         let createDepButtons = dialogbox.querySelector("#createDeposits");
                         let viewDepButton = dialogbox.querySelector("#viewDeposits");
+                        // let withdrawButton = dialogbox.querySelector("#withdrawDolCoins");
 
                         createAccButton.addEventListener("click", (event) =>{
                             event.preventDefault(); // We don't want to submit this fake form
