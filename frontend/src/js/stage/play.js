@@ -11,6 +11,7 @@ class PlayScreen extends Stage {
         audio.playTrack("#bgmusic");
         level.load("finfit_map")
         const dialogbox = document.getElementById("userdialog")
+
                 if (dialogbox.open){return false}
                 dialogbox.returnValue = {}
                 let formcontents = dialogbox.querySelector("#formcontents")
@@ -18,7 +19,8 @@ class PlayScreen extends Stage {
                 let formbuttons = dialogbox.querySelector("#formbuttons")
                 let submitbutton = dialogbox.querySelector("#submit");
                 let cancelbutton = dialogbox.querySelector("#cancel");
-                cancelbutton.setAttribute("hidden","true")
+                dialogbox.addEventListener("close",(event)=>{cancelbutton.removeAttribute("hidden")})
+                cancelbutton.setAttribute("hidden",true)
                 submitbutton.parentNode.replaceChild(submitbutton.cloneNode(true), submitbutton) // To clear any previous event handlers.
                 submitbutton = dialogbox.querySelector("#submit");
                 

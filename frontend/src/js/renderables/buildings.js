@@ -111,6 +111,8 @@ class BuildingEntity extends Entity{
                                //console.log(response)
 
                             }
+
+                            dialogbox.close()
                 }
                 );
                         break;
