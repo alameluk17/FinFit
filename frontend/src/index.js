@@ -65,9 +65,10 @@ device.onReady(() => {
         input.bindKey(input.KEY.UP,     "up");
         input.bindKey(input.KEY.DOWN,     "down");
         input.bindKey(input.KEY.SPACE,  "action", true);
-        input.bindKey(input.KEY.F,  "fraud");
-        input.bindKey(input.KEY.E,  "emergency");
-        input.bindKey(input.KEY.I,  "info");
+        
+        input.bindKey(input.KEY.COMMA,  "emergency");
+        input.bindKey(input.KEY.PERIOD,  "fraud");
+        input.bindKey(input.KEY.FORWAND_SLASH,  "info");
         // Start the game.
         game.world.gravity = new Vector2d(0,0)
         game.data = {}
