@@ -17,23 +17,23 @@ FinFit offers a range of features to enhance your financial literacy:
 ## Images
 
 ### Town Map 
-![Alt text](image-7.png)
+![Alt text](Img/image-7.png)
 
 ### Landing Page
-![Alt text](image-1.png)
+![Alt text](Img/image-1.png)
 
 ### User Information
-![Alt text](image-2.png)
+![Alt text](Img/image-2.png)
 
 ### Bank
-![Alt text](image-6.png)
+![Alt text](Img/image-6.png)
 
 ### Post Office Schemes
 
-![Alt text](image-8.png)
+![Alt text](Img/image-8.png)
 
 ### Randomized Emergency Alert
-![Alt text](image-3.png)
+![Alt text](Img/image-3.png)
 
 ### Potential Fraud/Scam
-![Alt text](image-4.png)
+![Alt text](Img/image-4.png)
