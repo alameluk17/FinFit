@@ -17,7 +17,7 @@ FinFit offers a range of features to enhance your financial literacy:
 ## Images
 
 ### Town Map 
-![Alt text](Img/image-7.png)
+![Alt text](https://github.com/alameluk17/FinFit/blob/8b39d3d9a94ab89ee509530456546f100331fdad/Img/image-7.png)
 
 ### Landing Page
 ![Alt text](Img/image-1.png)
