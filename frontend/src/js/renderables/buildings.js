@@ -123,7 +123,7 @@ class BuildingEntity extends Entity{
                         formcontents.innerHTML += '<br><br>'
                         formcontents.innerHTML += '<label for="payDues">You owe DolphDime Multispecialty Hospital: </label>'
                         formcontents.innerHTML += '<br><br>'
-                        formcontents.innerHTML += '<input id="payAmount" type="number" name="payAmount" value = "0" readonly>'
+                        formcontents.innerHTML += '<input id="payAmount" type="number" name="payAmount" value = "5000" readonly>'
                         formcontents.innerHTML += '<br><br>'
                         formcontents.innerHTML += '<p> Take care! </p>'
                         submitbutton.addEventListener("click", (event) => {
