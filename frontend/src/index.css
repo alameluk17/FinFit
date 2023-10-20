@@ -1,0 +1,139 @@
+body {
+
+    background-color: black;
+    color: white;
+
+    /* Allow mouse dragging. */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+
+    /* disable touch panning/zooming */
+    -ms-touch-action: none;
+    touch-action: none;
+
+    /* Allow canvas to hit the edges of the browser viewport. */
+    margin: 0;
+}
+  
+#screen canvas {
+    margin: auto;
+    /* Hide the gap for font descenders. */
+    display: block;
+}
+
+/*#formcontents{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: stretch;
+}
+
+#buttons{
+    display: flex;
+    justify-content: space-evenly;
+}*/
+
+.bank{
+    display: flex;
+    justify-content: center;
+    font-family: "Press Start 2P", serif;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    min-width: 70vw;
+    min-height: 70vh;
+    align-items: center;
+    opacity: 0.8;
+    width: 45%;
+    height: 45%;  
+    background-color: black; 
+}
+
+dialog[open]{
+    display: flex;
+    justify-content: center;
+    font-family: "Press Start 2P", serif;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    min-width: 75vw;
+    min-height: 75vh;
+    align-items: center;
+    opacity: 0.8;
+    width: 45%;
+    height: 45%;  
+    background-color: black;
+
+}
+
+button{
+   background:transparent;
+   color: white; 
+   min-width: 5vw;
+   min-height: 5vh;
+   font-family:"Press Start 2P", serif;
+   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: black;
+}
+
+
+
+/*#prettydiv{
+    background-color: black;
+    opacity: 0.5;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+    width: 100px;
+    height: 100px;
+    background-color: #ccc;
+}
+
+.hospital{
+    background-size: cover;
+    background-image: url('./data/img/background/Hospital.png');
+    background-position:100%;
+    background-color:black;
+    opacity: 0.8;
+    width: 45%;
+    height: 45%;   
+}
+
+.police{
+    background-size: cover;
+    background-image: url('./data/img/background/Bank.png') ;
+}
+
+.bank{
+    background-size: contain;
+    background-image: url('./data/img/background/Bank.png');
+    background-position:50% 100%;
+    background-position:100%;
+    width: 45%;
+    height: 45%; 
+}
+
+.login{
+    background-color: lightcoral;
+}*/
+
+
+table {
+    border-collapse: collapse;
+    /*width: 100%;*/
+}
+
+table, th, td {
+    border: 1px solid white;
+}
+
+th, td {
+    padding: 4px; /* Optional, for some spacing inside cells */
+    text-align: left; /* Optional, to align text */
+}
