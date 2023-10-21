@@ -18,6 +18,8 @@ FinFit offers a range of features to enhance your financial literacy:
 
 <video src="Img/finfitvid.mp4" controls title="Title"></video>
 
+<!-- ![Video ](Img/finfitvid.mp4) -->
+
 ## Images
 
 ### Town Map 
@@ -48,10 +50,12 @@ To run FinFit locally, follow these steps:
 
 1. Clone the repository to your local machine.
 
-2. Install the required python dependencies by running `pip install -r requirements.txt` in the backend folder.
+2. Install the required Python dependencies by running `pip install -r requirements.txt` in the backend folder.
 
 3. Navigate to the backend folder and run `python manage.py runserver`.
 
-4. Navigate to the frontend folder and run `npm run dev`.
+4. Navigate to the frontend folder and run `npm install` to install JavaScript dependencies.
 
-5. Access the game on your local server (e.g., http://localhost:9000).
+5. Navigate to the frontend folder and run `npm run dev`.
+
+6. Access the game on your local server (e.g., http://localhost:9000).
