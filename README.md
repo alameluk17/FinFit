@@ -16,7 +16,7 @@ FinFit offers a range of features to enhance your financial literacy:
 
 ## Demonstration Video 
 
-<video src="Img/FinFit.mp4" controls title="Title"></video>
+<video src="Img/finfitvid.mp4" controls title="Title"></video>
 
 ## Images
 
