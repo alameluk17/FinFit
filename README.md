@@ -41,3 +41,17 @@ FinFit offers a range of features to enhance your financial literacy:
 
 ### Potential Fraud/Scam
 ![Alt text](Img/image-4.png)
+
+## Setup and Installation
+
+To run FinFit locally, follow these steps:
+
+1. Clone the repository to your local machine.
+
+2. Install the required python dependencies by running `pip install -r requirements.txt` in the backend folder.
+
+3. Navigate to the backend folder and run `python manage.py runserver`.
+
+4. Navigate to the frontend folder and run `npm run dev`.
+
+5. Access the game on your local server (e.g., http://localhost:9000).
